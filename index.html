@@ -1,0 +1,2804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     OM PRAKASH MEHER — PORTFOLIO
+     Single-file build. Host on GitHub Pages / Netlify / Cloudflare Pages.
+
+     ── BEFORE YOU PUBLISH ────────────────────────────────────────────────
+     Search this file for  TODO:  — every gap is marked. Blocking ones:
+       1. LinkedIn URL           → DONE
+       2. Phone number           → DONE
+       3. Professional email     → DONE (allknowledgeforall@gmail.com)
+       4. Résumé PDF             → href set to Om-Prakash-Meher-Resume.pdf — place the file next to index.html
+       5. Portrait photo         → search  TODO:PORTRAIT
+       6. Formspree form ID      → search  TODO:FORM (sign up at formspree.io)
+       7. Client clearance       → DONE (Argus News + Muthoot Finance cleared)
+     Projects 06–09 and 6 certifications are written but COMMENTED OUT
+     because the brief flags them as too thin to survive questioning.
+     Search  TODO:UNLOCK  to find and fill them.
+     ══════════════════════════════════════════════════════════════════════ -->
+
+<title>Om Prakash Meher — Consumer &amp; Brand Strategy | Market Research</title>
+<meta name="description" content="Consumer and brand strategy work by Om Prakash Meher — primary research on regional Indian markets, brand positioning, campaign effectiveness and GenAI automation. PGDM (Marketing), Great Lakes Gurgaon.">
+<meta name="keywords" content="brand positioning, consumer research, market research, regional India markets, campaign effectiveness, Blue Ocean strategy, n8n automation, Odisha, Great Lakes Gurgaon">
+<meta name="author" content="Om Prakash Meher">
+<meta name="theme-color" content="#FBF9F4">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Om Prakash Meher — Consumer &amp; Brand Strategy">
+<meta property="og:description" content="I do consumer research in the parts of India most marketers only theorise about — and turn what people actually say into a strategy a business can run.">
+<meta property="og:image" content="og-image.png"><!-- TODO: perceptual map or clean portrait, 1200x630 -->
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ══ 1. TOKENS ══════════════════════════════════════════════════════════ */
+:root{
+  --paper:#FBF9F4; --paper-raised:#FFFFFF; --paper-sunk:#F2EEE4;
+  --ink:#171512; --ink-soft:#5C574E; --ink-faint:#A8A092;
+  --pine:#1D3B31; --pine-lift:#2F5B4C;
+  --brass:#A8762C; --brass-glow:#D9A24E;
+
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --s7:48px; --s8:64px; --s9:96px; --s10:144px; --s11:208px;
+
+  --r-sm:3px; --r-md:6px; --r-lg:12px; --r-pill:999px;
+  --hairline:1px solid var(--ink-faint);
+  --shadow-card:0 1px 2px rgba(23,21,18,.04), 0 8px 24px -12px rgba(23,21,18,.10);
+  --shadow-lift:0 2px 4px rgba(23,21,18,.05), 0 18px 40px -16px rgba(23,21,18,.16);
+
+  --display:"Fraunces",Georgia,serif;
+  --body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace;
+
+  --t-display:clamp(2.75rem,7vw,6.5rem);
+  --t-h1:clamp(2.25rem,4.5vw,3.75rem);
+  --t-h2:clamp(1.75rem,3vw,2.5rem);
+  --t-h3:1.375rem;
+  --t-body-lg:1.125rem;
+  --t-body:1rem;
+  --t-small:.875rem;
+  --t-mono:.8125rem;
+
+  --e-out:cubic-bezier(.22,1,.36,1);
+  --e-inout:cubic-bezier(.65,0,.35,1);
+  --d-fast:160ms; --d-base:320ms; --d-slow:700ms; --d-cine:1100ms;
+
+  --maxw:1280px;
+  --section-y:var(--s10);
+}
+@media(max-width:768px){ :root{ --section-y:var(--s8); } }
+
+/* ══ 2. RESET & BASE ════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:var(--t-body); line-height:1.7;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,h4{margin:0;font-weight:500}
+p{margin:0 0 var(--s4)}
+ul{margin:0;padding:0;list-style:none}
+
+/* paper grain — the thing that separates premium cream from beige div */
+body::after{
+  content:""; position:fixed; inset:0; z-index:1; pointer-events:none;
+  mix-blend-mode:multiply; opacity:.035;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--s6)}
+.mb-xl{margin-bottom:var(--s10)}
+.mb-lg{margin-bottom:var(--s7)}
+@media(max-width:768px){ .mb-xl{margin-bottom:var(--s7)} .mb-lg{margin-bottom:var(--s6)} }
+@media(max-width:768px){ .wrap{padding-inline:var(--s4)} }
+
+.section{padding-block:var(--section-y); position:relative; z-index:2}
+.section--sunk{background:var(--paper-sunk)}
+
+.eyebrow{
+  font-family:var(--mono); font-size:var(--t-mono); letter-spacing:.06em;
+  text-transform:uppercase; color:var(--ink-faint);
+  display:flex; align-items:center; gap:var(--s3); margin-bottom:var(--s5);
+}
+.eyebrow::before{content:"";width:24px;height:1px;background:currentColor;flex:none}
+
+h2.h2{font-family:var(--display);font-size:var(--t-h2);line-height:1.15;font-variation-settings:"opsz" 40,"WONK" 0;max-width:20ch}
+h3.h3{font-size:var(--t-h3);font-weight:600;line-height:1.3}
+.lede{font-size:var(--t-body-lg);line-height:1.65;max-width:68ch;color:var(--ink-soft)}
+.measure{max-width:68ch}
+.mono{font-family:var(--mono);font-size:var(--t-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint)}
+.num{font-variant-numeric:tabular-nums}
+
+::selection{background:var(--brass-glow);color:var(--ink)}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:var(--r-sm)}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+/* The canopy twin is fixed, not absolute: an absolutely-positioned hidden nav
+   at the top of the document yanks the page back up when a link takes focus. */
+#canopyNav{position:fixed;top:0;left:0}
+
+.skip{position:absolute;left:var(--s4);top:-60px;z-index:200;background:var(--pine);color:var(--paper);padding:var(--s3) var(--s4);border-radius:var(--r-md);font-family:var(--mono);font-size:var(--t-mono);transition:top var(--d-fast)}
+.skip:focus{top:var(--s4)}
+
+/* ══ 3. NAV ═════════════════════════════════════════════════════════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:var(--s5) var(--s6); transition:background var(--d-base),box-shadow var(--d-base);
+}
+.nav.stuck{background:rgba(251,249,244,.82);backdrop-filter:blur(12px);border-bottom:1px solid rgba(168,160,146,.35)}
+.nav__name{font-family:var(--display);font-size:18px;font-weight:500;text-decoration:none;font-variation-settings:"opsz" 20}
+.nav__links{display:flex;gap:var(--s5);align-items:center}
+.nav__links a{font-family:var(--mono);font-size:var(--t-mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);position:relative;padding-block:2px}
+.nav__links a::after{content:"";position:absolute;left:6px;bottom:-1px;width:0;height:1px;background:var(--brass);transition:width var(--d-fast) var(--e-out)}
+.nav__name,.nav__links a{
+  /* the canopy passes behind the bar at the top of the page, so the chrome
+     carries its own paper scrim rather than relying on the background */
+  background:rgba(251,249,244,.78); backdrop-filter:blur(4px);
+  padding:2px 6px; border-radius:var(--r-sm);
+}
+.nav.stuck .nav__name,.nav.stuck .nav__links a{background:transparent;backdrop-filter:none}
+.nav__links a::after{bottom:-1px;left:6px;right:6px}
+.nav__links a:hover::after,.nav__links a:focus-visible::after{width:calc(100% - 12px)}
+@media(max-width:768px){
+  .nav{padding:var(--s4)}
+  .nav__links{gap:var(--s4)}
+  .nav__links a[data-hide-sm]{display:none}
+}
+
+/* ══ 4. CANOPY (pinned 3D) ══════════════════════════════════════════════ */
+.canopy{position:relative;height:320vh}
+@media(max-width:768px){ .canopy{height:240vh} }
+.canopy__stage{
+  position:sticky;top:0;height:100vh;width:100%;overflow:hidden;
+  z-index:2;
+  transition:none;
+}
+#scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+/* parked minimap state */
+.canopy__stage.parked{
+  position:fixed; top:auto; left:auto;
+  right:var(--s5); bottom:var(--s5);
+  width:146px; height:146px; border-radius:var(--r-pill);
+  border:var(--hairline); box-shadow:var(--shadow-card);
+  background:rgba(251,249,244,.92); backdrop-filter:blur(6px);
+  z-index:55; cursor:pointer;
+  transition:width var(--d-slow) var(--e-inout),height var(--d-slow) var(--e-inout),border-radius var(--d-slow) var(--e-inout);
+}
+.canopy__stage.parked .canopy__overlays{display:none}
+.canopy__stage.parked .minimap-hint{display:block}
+.minimap-hint{
+  display:none;position:absolute;bottom:10px;left:0;right:0;text-align:center;
+  font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);pointer-events:none
+}
+@media(max-width:768px){ .canopy__stage.parked{width:76px;height:76px;right:var(--s4);bottom:var(--s4)} .canopy__stage.parked .minimap-hint{display:none} }
+
+.canopy__overlays{position:absolute;inset:0;pointer-events:none;display:grid;place-items:center}
+/* the canopy passes behind the overlay copy, so the left edge carries a soft
+   paper gradient — the text must stay readable at every point of the move */
+.canopy__overlays::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(100deg,rgba(251,249,244,.97) 0%,rgba(251,249,244,.82) 22%,rgba(251,249,244,.30) 38%,rgba(251,249,244,0) 52%);
+}
+@media(max-width:768px){
+  .canopy__overlays::before{background:linear-gradient(180deg,rgba(251,249,244,.92) 0%,rgba(251,249,244,.72) 55%,rgba(251,249,244,0) 100%)}
+}
+.ovl{
+  position:absolute;opacity:0;transition:opacity var(--d-slow) var(--e-out);
+  width:min(100%,var(--maxw));padding-inline:var(--s6);z-index:2;
+}
+.ovl.on{opacity:1}
+.ovl--hero{text-align:left}
+.ovl h1{
+  font-family:var(--display);font-size:var(--t-display);line-height:.94;
+  letter-spacing:-.03em;font-variation-settings:"opsz" 144,"WONK" 1,"SOFT" 30;
+  font-weight:400;margin:var(--s3) 0 var(--s5);
+}
+.ovl h2{font-family:var(--display);font-size:var(--t-h1);line-height:1.05;letter-spacing:-.02em;font-weight:500;font-variation-settings:"opsz" 60,"WONK" 0}
+.ovl p{font-size:var(--t-body-lg);line-height:1.6;max-width:60ch;color:var(--ink-soft)}
+.ovl .cta{display:flex;gap:var(--s3);flex-wrap:wrap;pointer-events:auto;margin-top:var(--s5)}
+@media(max-width:768px){ .ovl{padding-inline:var(--s4)} }
+
+.btn{
+  display:inline-flex;align-items:center;gap:var(--s2);
+  font-family:var(--mono);font-size:var(--t-mono);letter-spacing:.06em;text-transform:uppercase;
+  padding:var(--s3) var(--s5);border-radius:var(--r-pill);text-decoration:none;
+  border:1px solid var(--pine);background:var(--pine);color:var(--paper);
+  transition:transform var(--d-fast) var(--e-out),background var(--d-fast),box-shadow var(--d-fast);
+}
+.btn:hover{background:var(--pine-lift);transform:translateY(-2px);box-shadow:var(--shadow-lift)}
+.btn--ghost{background:transparent;color:var(--pine);border-color:var(--ink-faint)}
+.btn--ghost:hover{background:transparent;border-color:var(--pine)}
+
+.scrollcue{position:absolute;bottom:var(--s7);left:50%;transform:translateX(-50%);text-align:center;transition:opacity var(--d-base)}
+.scrollcue__line{width:1px;height:40px;background:var(--brass);margin:0 auto var(--s2);transform-origin:top;animation:cue 2s var(--e-inout) infinite}
+@keyframes cue{0%{transform:scaleY(0);opacity:0}40%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+.scrollcue span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* fruit hover label */
+.fruitlabel{
+  position:absolute;pointer-events:none;opacity:0;z-index:5;
+  background:var(--paper-raised);border:var(--hairline);border-radius:var(--r-md);
+  box-shadow:var(--shadow-card);padding:var(--s3) var(--s4);max-width:280px;
+  transform:translate(14px,-50%);transition:opacity var(--d-fast)
+}
+.fruitlabel.on{opacity:1}
+.fruitlabel strong{display:block;font-family:var(--display);font-size:15px;font-weight:600;line-height:1.25;margin-bottom:2px}
+.fruitlabel em{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--brass);font-style:normal}
+.fruitlabel span{display:block;font-size:13px;line-height:1.45;color:var(--ink-soft);margin-top:4px}
+
+/* fruit preview panel — sits beside the tree */
+.preview{
+  position:absolute; right:var(--s7); top:50%; transform:translateY(-50%) translateX(18px);
+  width:min(380px,38vw); max-height:78vh; overflow-y:auto; z-index:6;
+  background:var(--paper-raised); border:var(--hairline); border-radius:var(--r-lg);
+  box-shadow:var(--shadow-lift); padding:var(--s6);
+  pointer-events:auto; opacity:0; transition:opacity var(--d-base) var(--e-out),transform var(--d-base) var(--e-out);
+}
+.preview.on{opacity:1;transform:translateY(-50%) translateX(0)}
+.preview[hidden]{display:none}
+.preview__close{
+  position:absolute;top:var(--s3);right:var(--s3);width:30px;height:30px;
+  border:0;background:transparent;color:var(--ink-faint);font-size:22px;line-height:1;
+  cursor:pointer;border-radius:var(--r-sm)
+}
+.preview__close:hover{color:var(--ink)}
+.preview__kind{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--brass);margin-bottom:var(--s2)}
+.preview__title{font-family:var(--display);font-size:1.5rem;line-height:1.2;font-weight:500;font-variation-settings:"opsz" 40;margin-bottom:var(--s2)}
+.preview__meta{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:var(--s4)}
+.preview__line{font-size:var(--t-small);line-height:1.6;color:var(--ink-soft)}
+.preview__facts{margin:var(--s4) 0 var(--s5);border-top:var(--hairline)}
+.preview__facts li{display:flex;justify-content:space-between;gap:var(--s4);padding:var(--s2) 0;border-bottom:var(--hairline);font-size:13px}
+.preview__facts b{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);font-weight:400}
+.preview__cta{width:100%;justify-content:center}
+@media(max-width:900px){
+  .preview{right:var(--s4);left:var(--s4);width:auto;top:auto;bottom:var(--s5);transform:translateY(14px);max-height:56vh}
+  .preview.on{transform:translateY(0)}
+}
+.canopy__stage.parked .preview{display:none}
+#fallbackTree{display:none;position:absolute;inset:0;width:100%;height:100%}
+@media(min-width:769px){ #fallbackTree{transform:translateX(14%) scale(1.1)} }
+#fallbackTree a:hover circle{fill:var(--brass-glow)}
+.no-webgl #scene{display:none}
+.no-webgl #fallbackTree{display:block}
+
+/* ══ 5. REVEALS ═════════════════════════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(24px);transition:opacity var(--d-base) var(--e-out),transform var(--d-base) var(--e-out)}
+.rv.in{opacity:1;transform:none}
+
+/* arrival flash for deep-linked sections */
+@keyframes arrive{0%{width:0;opacity:1}70%{width:100%;opacity:1}100%{width:100%;opacity:0}}
+.arrive{position:relative}
+.arrive::before{content:"";position:absolute;left:0;top:-8px;height:2px;background:var(--brass);animation:arrive 600ms var(--e-out) forwards}
+
+/* ══ 6. ABOUT ═══════════════════════════════════════════════════════════ */
+.about{display:grid;grid-template-columns:7fr 5fr;gap:var(--s9)}
+@media(max-width:900px){ .about{grid-template-columns:1fr;gap:var(--s7)} }
+.portrait{width:100%;aspect-ratio:4/5;object-fit:cover;border:var(--hairline);border-radius:var(--r-md);box-shadow:var(--shadow-card);background:var(--paper-sunk)}
+.factlist{margin-top:var(--s5);border-top:var(--hairline)}
+.factlist div{display:flex;justify-content:space-between;gap:var(--s4);padding:var(--s3) 0;border-bottom:var(--hairline)}
+.factlist dt{font-family:var(--mono);font-size:var(--t-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin:0}
+.factlist dd{margin:0;font-size:var(--t-small);text-align:left}
+
+/* ══ 7. PILLARS ═════════════════════════════════════════════════════════ */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6);margin-top:var(--s7)}
+@media(max-width:900px){ .pillars{grid-template-columns:1fr} }
+.pillar{border-top:2px solid var(--pine);padding-top:var(--s4)}
+.pillar h3{font-family:var(--display);font-size:1.25rem;font-weight:600;margin-bottom:var(--s2)}
+.pillar p{font-size:var(--t-small);color:var(--ink-soft);margin:0;line-height:1.6}
+
+/* ══ 8. SKILLS — compact chip groups ═══════════════════════════════════ */
+.skillchips{display:flex;flex-direction:column;gap:var(--s6)}
+.schip-group{display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center}
+.schip-label{
+  width:100%;font-family:var(--mono);font-size:var(--t-mono);letter-spacing:.06em;
+  text-transform:uppercase;color:var(--brass);margin-bottom:var(--s2);font-weight:500;
+}
+.schip{
+  display:inline-block;background:var(--paper-raised);border:var(--hairline);
+  border-radius:var(--r-pill);padding:var(--s2) var(--s4);
+  font-size:var(--t-small);color:var(--ink);cursor:default;
+  transition:border-color var(--d-fast),background var(--d-fast);
+}
+.schip:hover{border-color:var(--pine);background:var(--paper)}
+.schip[title]:hover::after{content:attr(title);display:none}/* tooltip handled by native title */
+
+/* ══ 9. WORK — compact 3-col tiles that expand in place ════════════════ */
+.work{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4);align-items:start}
+@media(max-width:900px){ .work{grid-template-columns:repeat(2,1fr)} }
+@media(max-width:600px){ .work{grid-template-columns:1fr} }
+
+.ptile{
+  background:var(--paper-raised);border:var(--hairline);border-radius:var(--r-md);
+  box-shadow:var(--shadow-card);overflow:hidden;scroll-margin-top:96px;
+  transition:box-shadow var(--d-base) var(--e-out),border-color var(--d-base);
+}
+.ptile:hover{box-shadow:var(--shadow-lift)}
+.ptile.open{grid-column:1/-1;border-color:var(--pine)}
+
+.ptile__head{
+  display:flex;flex-direction:column;gap:var(--s2);
+  width:100%;text-align:left;background:transparent;border:0;cursor:pointer;
+  font:inherit;color:inherit;padding:var(--s4) var(--s5);
+}
+.ptile__head:hover .proj__title{color:var(--pine-lift)}
+
+.proj__no{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--brass)}
+.proj__title{font-family:var(--display);font-size:1.1rem;line-height:1.22;letter-spacing:-.01em;font-weight:500;font-variation-settings:"opsz" 30;transition:color var(--d-fast)}
+.ptile.open .proj__title{font-size:var(--t-h2)}
+.proj__meta{font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint);line-height:1.6}
+
+/* read-more affordance */
+.ptile__head::after{
+  content:"Read more →";
+  font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--brass);margin-top:var(--s2);
+}
+.ptile.open .ptile__head::after{content:"Close ↑"}
+
+.ptile__body{display:none;padding:0 var(--s5) var(--s6);border-top:var(--hairline);margin-top:var(--s2)}
+.ptile.open .ptile__body{display:block;padding-top:var(--s5)}
+
+.proj__body{display:grid;grid-template-columns:7fr 5fr;gap:var(--s8)}
+@media(max-width:900px){ .proj__body{grid-template-columns:1fr;gap:var(--s6)} }
+.block{margin-bottom:var(--s6)}
+.block h4{font-family:var(--mono);font-size:var(--t-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:var(--s3);font-weight:500}
+.bullets li{position:relative;padding-left:var(--s5);margin-bottom:var(--s3);font-size:var(--t-small);line-height:1.65}
+.bullets li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:1px;background:var(--brass)}
+.aside{background:var(--paper-raised);border:var(--hairline);border-radius:var(--r-md);padding:var(--s5);box-shadow:var(--shadow-card);align-self:start;position:sticky;top:96px}
+@media(max-width:900px){ .aside{position:static} }
+.aside h4{margin-bottom:var(--s3)}
+.aside p{font-size:var(--t-small);color:var(--ink-soft);line-height:1.6}
+.pull{font-family:var(--display);font-size:1.35rem;line-height:1.35;font-weight:500;font-variation-settings:"opsz" 40;color:var(--pine);border-left:2px solid var(--brass);padding-left:var(--s5);margin:var(--s6) 0}
+.method{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center;margin-top:var(--s4);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint)}
+.method i{font-style:normal;color:var(--brass)}
+
+/* the 92/27 split bar */
+.split{margin:var(--s5) 0}
+.split__row{display:grid;grid-template-columns:170px 1fr 52px;gap:var(--s4);align-items:center;margin-bottom:var(--s3);font-size:var(--t-small)}
+@media(max-width:600px){ .split__row{grid-template-columns:120px 1fr 44px;gap:var(--s3);font-size:13px} }
+.split__bar{height:8px;background:var(--paper-sunk);border-radius:var(--r-pill);overflow:hidden}
+.split__fill{height:100%;border-radius:var(--r-pill);width:0;transition:width var(--d-cine) var(--e-out)}
+.split__fill.good{background:var(--pine)}
+.split__fill.bad{background:var(--brass)}
+.split__val{font-family:var(--mono);font-size:var(--t-mono);text-align:left;font-variant-numeric:tabular-nums}
+
+/* perceptual map */
+.pmap{width:100%;height:auto;border:var(--hairline);border-radius:var(--r-md);background:var(--paper-raised)}
+.pmap text{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;fill:var(--ink-soft)}
+.pmap .axis{stroke:var(--ink-faint);stroke-width:1}
+.pmap .grid{stroke:var(--ink-faint);stroke-width:.5;stroke-dasharray:2 4;opacity:.6}
+.pmap .dot{fill:var(--ink-soft);cursor:pointer;transition:r var(--d-fast),fill var(--d-fast)}
+.pmap .dot:hover{fill:var(--pine);r:7}
+.pmap .dot.us{fill:var(--brass)}
+.pmap .white{fill:var(--brass);opacity:.08}
+.pmap .whitelabel{fill:var(--brass);font-weight:500}
+
+/* workflow diagram */
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s3);margin:var(--s5) 0}
+.node{background:var(--paper-raised);border:var(--hairline);border-radius:var(--r-md);padding:var(--s3) var(--s4);cursor:pointer;transition:border-color var(--d-fast),transform var(--d-fast) var(--e-out)}
+.node:hover,.node[aria-expanded="true"]{border-color:var(--pine);transform:translateY(-2px)}
+.node b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--brass);margin-bottom:2px}
+.node span{font-size:13px;font-weight:500}
+.node p{display:none;font-size:12px;color:var(--ink-soft);margin:var(--s2) 0 0;line-height:1.5}
+.node[aria-expanded="true"] p{display:block}
+
+/* ══ 10. EXPERIENCE TABS ════════════════════════════════════════════════ */
+.exp-panel{display:grid;grid-template-columns:280px 1fr;gap:var(--s6);margin-bottom:var(--s10)}
+@media(max-width:900px){ .exp-panel{grid-template-columns:1fr;gap:var(--s4)} }
+.exp-tabs{display:flex;flex-direction:column;gap:var(--s3)}
+@media(max-width:900px){ .exp-tabs{flex-direction:row;overflow-x:auto;gap:var(--s2)} }
+.exp-tab{
+  text-align:left;background:var(--paper-raised);border:var(--hairline);border-radius:var(--r-md);
+  padding:var(--s4);cursor:pointer;font:inherit;color:inherit;
+  transition:border-color var(--d-fast),box-shadow var(--d-fast);
+}
+@media(max-width:900px){ .exp-tab{min-width:200px;flex:none} }
+.exp-tab:hover{border-color:var(--pine)}
+.exp-tab.active{border-color:var(--pine);box-shadow:var(--shadow-lift);background:var(--paper)}
+.exp-tab .h3{font-size:var(--t-small);margin:var(--s2) 0 2px}
+.exp-tab .tl__org{font-size:12px}
+.exp-detail{
+  background:var(--paper-raised);border:var(--hairline);border-radius:var(--r-lg);
+  padding:var(--s6);box-shadow:var(--shadow-card);min-height:220px;
+}
+.exp-content{display:none}
+.exp-content.active{display:block}
+
+/* ══ SKILL POPUP ════════════════════════════════════════════════════════ */
+.skill-popup{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.95);
+  width:min(480px,90vw);max-height:80vh;overflow-y:auto;z-index:100;
+  background:var(--paper-raised);border:var(--hairline);border-radius:var(--r-lg);
+  box-shadow:var(--shadow-lift);padding:var(--s6);
+  opacity:0;pointer-events:none;transition:opacity var(--d-fast),transform var(--d-fast) var(--e-out);
+}
+.skill-popup.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+.skill-popup__close{position:absolute;top:var(--s3);right:var(--s3);width:30px;height:30px;border:0;background:transparent;color:var(--ink-faint);font-size:22px;cursor:pointer}
+.skill-popup__title{font-family:var(--display);font-size:1.25rem;font-weight:600;margin-bottom:var(--s2)}
+.skill-popup__proof{font-size:var(--t-small);color:var(--ink-soft);line-height:1.6;margin-bottom:var(--s4)}
+.skill-popup__example{border-top:var(--hairline);padding-top:var(--s4);font-size:var(--t-small);color:var(--ink);line-height:1.6}
+.skill-popup__example b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--brass);margin-bottom:var(--s2)}
+.skill-overlay{position:fixed;inset:0;z-index:99;background:rgba(23,21,18,.25);opacity:0;pointer-events:none;transition:opacity var(--d-fast)}
+.skill-overlay.on{opacity:1;pointer-events:auto}
+.tl{position:relative;padding-left:var(--s7)}
+.tl::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:var(--ink-faint)}
+.tl li{position:relative;padding-bottom:var(--s6)}
+.tl li::before{content:"";position:absolute;left:-46px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--brass);border:2px solid var(--paper)}
+.tl__year{font-family:var(--mono);font-size:var(--t-mono);letter-spacing:.06em;color:var(--ink-faint)}
+.tl h3{margin:2px 0 2px}
+.tl__org{font-size:var(--t-small);color:var(--brass);margin-bottom:var(--s2)}
+.tl p{font-size:var(--t-small);color:var(--ink-soft);margin:0;max-width:64ch}
+@media(max-width:600px){ .tl{padding-left:var(--s6)} .tl li::before{left:-38px} }
+
+/* dense rows */
+.rows li{display:grid;grid-template-columns:150px 1fr;gap:var(--s5);padding-block:var(--s5);border-top:var(--hairline)}
+.rows li:last-child{border-bottom:var(--hairline)}
+@media(max-width:768px){ .rows li{grid-template-columns:1fr;gap:var(--s2)} }
+
+/* ══ 11. CONTACT ════════════════════════════════════════════════════════ */
+.contact{display:grid;grid-template-columns:6fr 6fr;gap:var(--s9);align-items:start}
+@media(max-width:900px){ .contact{grid-template-columns:1fr;gap:var(--s7)} }
+.contact h2{font-family:var(--display);font-size:var(--t-h1);line-height:1.05;letter-spacing:-.02em;font-variation-settings:"opsz" 100,"WONK" 1;font-weight:400;max-width:12ch}
+.field{margin-bottom:var(--s4)}
+.field label{display:block;font-family:var(--mono);font-size:var(--t-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:var(--s2)}
+.field input,.field textarea{
+  width:100%;font-family:var(--body);font-size:var(--t-body);color:var(--ink);
+  background:var(--paper-raised);border:var(--hairline);border-radius:var(--r-md);
+  padding:var(--s3) var(--s4);transition:border-color var(--d-fast)
+}
+.field textarea{min-height:130px;resize:vertical}
+.field input:focus,.field textarea:focus{outline:2px solid var(--brass);outline-offset:2px;border-color:transparent}
+.directs{margin-top:var(--s6);border-top:var(--hairline);padding-top:var(--s4)}
+.directs a{display:flex;justify-content:space-between;gap:var(--s4);padding:var(--s3) 0;border-bottom:var(--hairline);text-decoration:none;font-family:var(--mono);font-size:var(--t-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);transition:color var(--d-fast)}
+.directs a:hover{color:var(--brass)}
+
+footer{border-top:var(--hairline);padding-block:var(--s6);position:relative;z-index:2}
+.footrow{display:flex;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* ══ 12. REDUCED MOTION ═════════════════════════════════════════════════ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+  .canopy{height:100vh}
+  .scrollcue{display:none}
+}
+@media print{
+  .nav,.canopy,.scrollcue,#scene,.canopy__stage{display:none!important}
+  body{background:#fff;color:#000;font-size:11pt}
+  .section{padding-block:16pt}
+  .aside{box-shadow:none;border:1px solid #ccc}
+}
+
+/* ══════════════════════════════════════════
+   ADMIN PANEL (inline settings)
+   ══════════════════════════════════════════ */
+.adm-gear{position:fixed;bottom:24px;right:24px;width:46px;height:46px;border-radius:50%;background:var(--pine);color:var(--paper);border:none;cursor:pointer;font-size:22px;z-index:900;box-shadow:0 4px 16px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;transition:transform .2s,opacity .2s}
+.adm-gear:hover{transform:scale(1.12)}
+.adm-gear.hidden{opacity:0;pointer-events:none}
+
+/* Login modal */
+.adm-modal{display:none;position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);align-items:center;justify-content:center}
+.adm-modal.open{display:flex}
+.adm-modal__card{background:#1a1d27;color:#e4e4e7;border-radius:14px;padding:36px;width:92%;max-width:370px;box-shadow:0 20px 60px rgba(0,0,0,.55);font-family:Inter,-apple-system,sans-serif}
+.adm-modal__card h2{margin:0 0 6px;font-size:20px;font-weight:600;color:#fff}
+.adm-modal__card .sub{margin:0 0 22px;font-size:13px;color:#a1a1aa}
+.adm-modal__card label{display:block;font-size:11px;font-weight:600;color:#a1a1aa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.adm-modal__card input{width:100%;padding:10px 14px;background:#242833;border:1px solid #2e3340;border-radius:8px;color:#e4e4e7;font-size:14px;margin-bottom:14px;outline:none;font-family:inherit}
+.adm-modal__card input:focus{border-color:#6366f1}
+.adm-modal__card .adm-btn{width:100%;padding:12px;background:#6366f1;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit}
+.adm-modal__card .adm-btn:hover{background:#818cf8}
+.adm-modal__card .adm-err{color:#ef4444;font-size:12px;margin-bottom:10px;display:none}
+.adm-modal__card .adm-close{position:absolute;top:12px;right:16px;background:none;border:none;color:#71717a;font-size:22px;cursor:pointer}
+
+/* Top admin bar */
+.adm-bar{display:none;position:fixed;top:0;left:0;right:0;z-index:9990;background:#1a1d27;color:#e4e4e7;padding:10px 24px;font-size:13px;font-family:Inter,-apple-system,sans-serif;align-items:center;gap:12px;box-shadow:0 2px 12px rgba(0,0,0,.4);border-bottom:1px solid #2e3340}
+.adm-bar.open{display:flex}
+.adm-bar .adm-bar__label{flex:1;font-weight:500;display:flex;align-items:center;gap:8px}
+.adm-bar .adm-bar__dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:adm-pulse 2s infinite}
+@keyframes adm-pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.adm-bar button{padding:7px 16px;border:none;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit}
+.adm-bar .adm-bar__save{background:#6366f1;color:#fff}
+.adm-bar .adm-bar__save:hover{background:#818cf8}
+.adm-bar .adm-bar__save:disabled{opacity:.5;cursor:wait}
+.adm-bar .adm-bar__exit{background:transparent;border:1px solid #2e3340;color:#a1a1aa}
+.adm-bar .adm-bar__exit:hover{border-color:#6366f1;color:#e4e4e7}
+
+/* Right side panel */
+.adm-panel{position:fixed;top:0;right:-420px;width:400px;max-width:92vw;height:100vh;z-index:9995;background:#1a1d27;border-left:1px solid #2e3340;box-shadow:-8px 0 32px rgba(0,0,0,.4);transition:right .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;font-family:Inter,-apple-system,sans-serif;color:#e4e4e7;font-size:13px}
+.adm-panel.open{right:0}
+.adm-panel__head{display:flex;align-items:center;justify-content:space-between;padding:20px 20px 0;flex-shrink:0}
+.adm-panel__head h2{margin:0;font-size:16px;font-weight:600;color:#fff}
+.adm-panel__head button{background:none;border:none;color:#71717a;font-size:24px;cursor:pointer;line-height:1}
+
+/* Tabs */
+.adm-tabs{display:flex;gap:0;padding:16px 20px 0;border-bottom:1px solid #2e3340;flex-shrink:0;overflow-x:auto}
+.adm-tabs button{background:none;border:none;border-bottom:2px solid transparent;color:#a1a1aa;padding:8px 12px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap;font-family:inherit;transition:all .15s}
+.adm-tabs button:hover{color:#e4e4e7}
+.adm-tabs button.active{color:#818cf8;border-bottom-color:#6366f1}
+
+/* Panel body */
+.adm-body{flex:1;overflow-y:auto;padding:20px}
+.adm-body .adm-tab{display:none}
+.adm-body .adm-tab.active{display:block}
+.adm-body h3{margin:0 0 14px;font-size:14px;font-weight:600;color:#fff}
+.adm-body p.hint{font-size:11px;color:#71717a;margin:6px 0 14px;line-height:1.5}
+
+/* Theme cards */
+.adm-theme-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.adm-theme-card{background:#242833;border:2px solid #2e3340;border-radius:10px;padding:12px;cursor:pointer;transition:all .15s}
+.adm-theme-card:hover{border-color:#6366f1}
+.adm-theme-card.sel{border-color:#6366f1;box-shadow:0 0 0 1px #6366f1}
+.adm-theme-preview{height:32px;border-radius:6px;display:flex;overflow:hidden;margin-bottom:8px}
+.adm-theme-preview span{flex:1}
+.adm-theme-card .tn{font-size:12px;font-weight:600}
+.adm-theme-card .td{font-size:10px;color:#71717a;margin-top:2px}
+
+/* Color rows */
+.adm-color-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #2e3340}
+.adm-color-row:last-child{border:none}
+.adm-color-row label{flex:1;font-size:12px;color:#a1a1aa}
+.adm-color-row input[type="color"]{width:36px;height:28px;border:1px solid #2e3340;border-radius:6px;background:#242833;cursor:pointer;padding:2px}
+.adm-color-row .hex{font-family:"JetBrains Mono",monospace;font-size:11px;color:#71717a;width:64px}
+
+/* Content editor sections */
+.adm-editor{background:#242833;border:1px solid #2e3340;border-radius:8px;padding:14px;margin-bottom:10px}
+.adm-editor h4{margin:0 0 8px;font-size:12px;font-weight:600;color:#a1a1aa;text-transform:uppercase;letter-spacing:.05em}
+.adm-editor textarea{width:100%;padding:8px 10px;background:#1a1d27;border:1px solid #2e3340;border-radius:6px;color:#e4e4e7;font-size:12px;font-family:inherit;resize:vertical;min-height:56px;outline:none;line-height:1.5}
+.adm-editor textarea:focus{border-color:#6366f1}
+
+/* Tile list */
+.adm-tile-list{list-style:none;padding:0;margin:0}
+.adm-tile-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#242833;border:1px solid #2e3340;border-radius:8px;margin-bottom:6px;cursor:grab;user-select:none;transition:all .15s}
+.adm-tile-item:active{cursor:grabbing;border-color:#6366f1;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.adm-tile-item .grip{color:#71717a;font-size:14px;flex-shrink:0}
+.adm-tile-item .ti{flex:1}
+.adm-tile-item .ti .tt{font-size:12px;font-weight:500}
+.adm-tile-item .ti .tm{font-size:10px;color:#71717a}
+.adm-tile-item.dragging{opacity:.3}
+
+/* Resume upload */
+.adm-upload{border:2px dashed #2e3340;border-radius:10px;padding:28px;text-align:center;cursor:pointer;transition:all .2s}
+.adm-upload:hover{border-color:#6366f1;background:rgba(99,102,241,.08)}
+.adm-upload.has{border-style:solid;border-color:#22c55e}
+.adm-upload p{margin:6px 0 0;color:#a1a1aa;font-size:12px}
+.adm-upload .fn{color:#22c55e;font-weight:500;font-size:13px}
+
+/* GitHub setup */
+.adm-setup input{width:100%;padding:9px 12px;background:#242833;border:1px solid #2e3340;border-radius:6px;color:#e4e4e7;font-size:13px;margin-bottom:12px;outline:none;font-family:inherit}
+.adm-setup input:focus{border-color:#6366f1}
+.adm-setup label{display:block;font-size:11px;font-weight:600;color:#a1a1aa;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.adm-setup .adm-btn-sm{padding:8px 16px;background:#6366f1;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit}
+.adm-setup .adm-btn-sm:hover{background:#818cf8}
+.adm-setup .adm-btn-outline{padding:8px 16px;background:transparent;border:1px solid #2e3340;color:#a1a1aa;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit}
+
+/* Toast */
+.adm-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:#1a1d27;border:1px solid #2e3340;border-radius:8px;padding:12px 24px;font-size:13px;font-family:Inter,-apple-system,sans-serif;box-shadow:0 8px 32px rgba(0,0,0,.45);opacity:0;transition:all .3s;z-index:99999;white-space:nowrap}
+.adm-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.adm-toast.ok{border-color:#22c55e;color:#22c55e}
+.adm-toast.err{border-color:#ef4444;color:#ef4444}
+.adm-toast.info{border-color:#6366f1;color:#818cf8}
+
+@media(max-width:640px){
+  .adm-panel{width:100%;right:-100%}
+  .adm-theme-grid{grid-template-columns:1fr}
+  .adm-gear{bottom:16px;right:16px;width:40px;height:40px;font-size:18px}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#about">Skip to content</a>
+
+<!-- ══ ACCESSIBLE TWIN OF THE CANOPY (R2 for keyboard/screen reader) ══ -->
+<nav class="sr-only" aria-label="Canopy contents" id="canopyNav">
+  <h2>Contents of the tree</h2>
+  <ul>
+    <li><a href="#project-argus" data-fruit="argus">Argus News brand positioning study — 2026</a></li>
+    <li><a href="#project-goldloan" data-fruit="goldloan">Gold loan campaign effectiveness study — 2026</a></li>
+    <li><a href="#project-reliance" data-fruit="reliance">Reliance Retail heritage-brand strategy — 2026</a></li>
+    <li><a href="#project-n8n" data-fruit="n8n">Lead scoring and instant response automation — 2026</a></li>
+    <li><a href="#project-genai" data-fruit="genai">GenAI satisfaction qualitative study — 2026</a></li>
+    <li><a href="#project-digimarket" data-fruit="digimarket">Digital marketing end-to-end jewellery business — 2026</a></li>
+    <li><a href="#project-levis" data-fruit="levis">Levi's India premium apparel growth strategy — 2026</a></li>
+    <li><a href="#project-microventure" data-fruit="microventure">Micro-venture with economic modelling — 2025</a></li>
+    <li><a href="#skills" data-fruit="d0">Research and fieldwork</a></li>
+    <li><a href="#skills" data-fruit="d1">Strategy and brand</a></li>
+    <li><a href="#skills" data-fruit="d2">Consumer and regional markets</a></li>
+    <li><a href="#skills" data-fruit="d3">Automation and GenAI</a></li>
+    <li><a href="#achievements" data-fruit="kick">Odisha State Kick Boxing Championship, third place — 2016</a></li>
+    <li><a href="#achievements" data-fruit="diya">Block Youth Coordinator, DIYA — 2022 to 2025</a></li>
+  </ul>
+</nav>
+
+<header class="nav" id="nav">
+  <a class="nav__name" href="#top">Om Prakash Meher</a>
+  <nav class="nav__links" aria-label="Main">
+    <a href="#work">Work</a>
+    <a href="#about" data-hide-sm>About</a>
+    <a href="#experience" data-hide-sm>Experience</a>
+    <!-- TODO:RESUME — place Om-Prakash-Meher-Resume.pdf next to index.html, then uncomment the download attribute -->
+    <a href="Om-Prakash-Meher-Resume.pdf" data-hide-sm>Résumé ↓</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ══════════════════ ZONE 1 — THE CANOPY ══════════════════ -->
+<div id="top" class="canopy">
+  <div class="canopy__stage" id="stage">
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <svg id="fallbackTree" viewBox="0 0 800 600" role="img" aria-label="Diagram of the tree of work"></svg>
+    <div class="fruitlabel" id="fruitLabel" aria-hidden="true"></div>
+
+    <!-- Preview panel: clicking a fruit opens the work here, beside the tree,
+         rather than throwing the visitor to the bottom of the page. -->
+    <aside class="preview" id="preview" aria-live="polite" hidden>
+      <button class="preview__close" id="previewClose" aria-label="Close preview">&times;</button>
+      <div class="preview__kind" id="pvKind"></div>
+      <h3 class="preview__title" id="pvTitle"></h3>
+      <div class="preview__meta" id="pvMeta"></div>
+      <p class="preview__line" id="pvLine"></p>
+      <ul class="preview__facts" id="pvFacts"></ul>
+      <a class="btn preview__cta" id="pvCta" href="#work">Read the full project</a>
+    </aside>
+
+    <div class="canopy__overlays">
+      <div class="ovl ovl--hero on" data-from="0" data-to="0.17">
+        <div class="mono">Available for placement · 2027</div>
+        <h1>Om Prakash<br>Meher</h1>
+        <p>Marketing end to end — research to revenue to retention. Two primary studies, three field surveys, a live creative brief and an automation build, all in one year of a PGDM.</p>
+        <div class="cta">
+          <a class="btn" href="#work">View work</a>
+          <a class="btn btn--ghost" href="Om-Prakash-Meher-Resume.pdf">Download résumé</a>
+        </div>
+      </div>
+
+      <div class="ovl" data-from="0.15" data-to="0.50">
+        <div class="mono">Branches</div>
+        <h2>What I work with</h2>
+        <p>Market research · consumer understanding · brand positioning · campaign strategy · sales activation · after-sales value creation · operations.</p>
+      </div>
+
+      <div class="ovl" data-from="0.45" data-to="1.01">
+        <div class="mono">Overhead</div>
+        <h2>Click any fruit</h2>
+        <p>Every marker on the canopy is a piece of work. Click one to read it here, without leaving the tree.</p>
+      </div>
+    </div>
+
+    <div class="scrollcue" id="cue"><div class="scrollcue__line"></div><span>Scroll</span></div>
+    <div class="minimap-hint">Canopy</div>
+  </div>
+</div>
+
+<!-- ══════════════════ ZONE 2 — ABOUT ══════════════════ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="eyebrow rv">About</div>
+    <div class="about">
+      <div class="rv">
+        <h2 class="h2" style="margin-bottom:var(--s5)">Marketing end to end — from research to revenue to retention.</h2>
+        <div class="measure">
+          <p>I work across the full marketing value chain: market research and consumer understanding, brand positioning and campaign strategy, sales activation, and after-sales relationship and value creation — with an operations lens on how things actually get delivered. A fast learner who picks up industries in weeks, not months. Two primary studies, three field surveys, a live creative brief and an automation build — all done in one year of a PGDM. The work is below.</p>
+        </div>
+      </div>
+      <div class="rv">
+        <!-- TODO:PORTRAIT — replace src with your photo (4:5 crop, ~800x1000, under 200KB) -->
+        <img class="portrait" src="portrait.jpg" alt="Om Prakash Meher" onerror="this.style.display='none'">
+        <dl class="factlist">
+          <div><dt>Based</dt><dd>Gurgaon, NCR · open to relocate</dd></div>
+
+          <div><dt>Studying</dt><dd>PGDM 2025–27, Great Lakes Gurgaon</dd></div>
+          <div><dt>Focus</dt><dd>Marketing (major) · Operations (minor)</dd></div>
+          <div><dt>Languages</dt><dd>English · Hindi · Odia</dd></div>
+          <div><dt>Field studies run</dt><dd class="num">3</dd></div>
+        </dl>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- ══════════════════ ZONE 3 — SKILLS ══════════════════ -->
+<section class="section section--sunk" id="skills">
+  <div class="wrap">
+    <div class="eyebrow rv">Skills</div>
+    <h2 class="h2 rv mb-lg">What I can do, and the proof behind each claim.</h2>
+
+    <div class="skillchips rv">
+      <div class="schip-group">
+        <div class="schip-label">Research & analysis</div>
+        <span class="schip" title="Two studies designed and fielded in one internship">Primary research design</span>
+        <span class="schip" title="Nine interviews, verbatim transcription, three-stage coding">Qualitative research</span>
+        <span class="schip" title="38 sources across RBI, PwC, EY, ICRA, S&P Global">Secondary research</span>
+        <span class="schip" title="Six channels across ten dimensions">Competitive benchmarking</span>
+        <span class="schip" title="Cross-tabs, frequency, demographic segmentation">Survey analysis</span>
+      </div>
+      <div class="schip-group">
+        <div class="schip-label">Strategy & brand</div>
+        <span class="schip" title="Perceptual map I built, six competitors plotted, statement tested four ways">Brand positioning</span>
+        <span class="schip" title="Blue Ocean / ERRC, Ansoff, BCG, SWOT, 4P">Strategic frameworks</span>
+        <span class="schip" title="Four-level framework + full teardown of one lender's portfolio">Campaign analysis</span>
+        <span class="schip" title="Consumer belief, target, objective, supports, media mix — one-day turnaround">Creative briefing</span>
+      </div>
+      <div class="schip-group" id="skill-regional">
+        <div class="schip-label">Regional & vernacular markets</div>
+        <span class="schip" title="Designed a research instrument in Odia and specified Odia-first creative">Odia fluency (written & spoken)</span>
+        <span class="schip" title="Instrument that works in two languages without shifting the question">Bilingual research design</span>
+        <span class="schip" title="How a regional channel earns, what content travels">Regional media economics</span>
+        <span class="schip" title="250+ students reached at NIT Rourkela">On-ground field marketing</span>
+      </div>
+      <div class="schip-group" id="skill-tools">
+        <div class="schip-label">Tools &amp; platforms</div>
+        <span class="schip" title="13-node workflow with branching, validation and error fallbacks">n8n</span>
+        <span class="schip" title="Structured-output prompting with parse fallbacks">OpenAI API</span>
+        <span class="schip" title="Built and fielded the Argus audience survey; 76 responses collected and compiled">Google Forms</span>
+        <span class="schip" title="Cross-tabs, frequency analysis and response dashboards for both primary studies">Google Sheets</span>
+        <span class="schip" title="Gold loan campaign data collection and basic statistical analysis on 100 responses">Excel</span>
+        <span class="schip" title="Programme-level audit of Argus News content performance across shows and formats">YouTube Analytics</span>
+        <span class="schip" title="Strategy decks for Reliance Retail and Rath Yatra creative brief">PowerPoint</span>
+        <span class="schip" title="Set up tracking for jewellery business website — traffic sources, visitor behaviour, conversions">Google Analytics</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ZONE 4 — WORK ══════════════════ -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="eyebrow rv">Selected work</div>
+    <h2 class="h2 rv mb-xl">Eight projects. Two of them run on data I collected myself.</h2>
+
+    <div class="work">
+
+      <!-- ─── PROJECT 01 ─── -->
+      <!-- CLEARED — Argus News named with permission. -->
+      <article class="ptile rv" id="project-argus">
+        <button class="ptile__head" type="button" aria-expanded="false">
+          <div>
+            <div class="proj__no">01 / Brand positioning</div>
+            <h3 class="proj__title">Where does a regional news channel stand, and where should it?</h3>
+          </div>
+          <div class="proj__meta">
+            Argus News · Odia news channel<br>
+            ABM Communications · Live client<br>
+            Apr–Jun 2026
+          </div>
+                <div class="method">
+          <span>Survey design</span><i>→</i><span>Fielding</span><i>→</i><span>Analysis</span><i>→</i><span>Positioning</span>
+        </div>
+        </button>
+
+
+        <div class="ptile__body"><div class="proj__body">
+          <div>
+            <div class="block">
+              <h4>The ask</h4>
+              <p class="measure">Argus News is a regional Odia news channel — digital since 2018, on satellite TV since 2021 — competing against five established players for the same audience. Understand how Odia audiences actually consume news, find out where Argus stands, and define where it should stand.</p>
+            </div>
+
+            <div class="block">
+              <h4>What I did</h4>
+              <ul class="bullets">
+                <li><b>Sized and segmented the market</b> — Odisha's news market by medium, geography and content format, including the Odia diaspora, which the market consistently underserves.</li>
+                <li><b>Benchmarked six channels across ten dimensions</b> — OTV, Kanak News, Kalinga TV, News18 Odia, Nandighosha TV and Argus, on digital performance, advertiser mix, programme recall, IP events, website and Instagram presence, and engagement strategy.</li>
+                <li><b>Designed and ran the primary survey</b> — a five-part instrument in both English and Odia, mixing multiple choice and 1–7 rating scales, fielded over six days through WhatsApp and personal networks. Responses spanned cities, towns, villages and out-of-state Odias; ages 18 to 60+; students, business owners, salaried employees, farmers and homemakers.</li>
+                <li><b>Audited the digital footprint programme by programme</b> — YouTube performance by show and format, caption strategy, thumbnail strategy, website traffic.</li>
+                <li><b>Built the positioning</b> — two axes I defined myself, all six competitors plotted, the empty quadrant identified, the statement written and then tested four ways: does it own a single value, is it true, is it unique, is it hard to copy.</li>
+              </ul>
+            </div>
+
+            <div class="block">
+              <h4>The perceptual map</h4>
+              <svg class="pmap" viewBox="0 0 620 480" role="img" aria-label="Perceptual map of six Odia news channels on two axes: TRP-driven versus duty-driven, and voice of the powerful versus voice of the people. The duty-driven, voice-of-the-people quadrant is empty and is where Argus News is positioned.">
+                <rect class="white" x="310" y="240" width="290" height="210" rx="4"/>
+                <line class="grid" x1="60" y1="345" x2="600" y2="345"/><line class="grid" x1="455" y1="30" x2="455" y2="450"/>
+                <line class="axis" x1="60" y1="240" x2="600" y2="240"/>
+                <line class="axis" x1="310" y1="30" x2="310" y2="450"/>
+                <text x="66" y="232">TRP-driven</text>
+                <text x="600" y="232" text-anchor="end">Duty-driven</text>
+                <text x="316" y="42">Voice of the powerful</text>
+                <text x="316" y="448">Voice of the people</text>
+                <circle class="dot" cx="150" cy="115" r="5"/><text x="162" y="119">OTV</text>
+                <circle class="dot" cx="215" cy="180" r="5"/><text x="227" y="184">News18 Odia</text>
+                <circle class="dot" cx="180" cy="300" r="5"/><text x="192" y="304">Kanak News</text>
+                <circle class="dot" cx="360" cy="150" r="5"/><text x="372" y="154">Kalinga TV</text>
+                <circle class="dot" cx="395" cy="215" r="5"/><text x="407" y="219">Nandighosha TV</text>
+                <circle class="dot us" cx="470" cy="360" r="8"/><text x="486" y="364" class="whitelabel">Argus News</text>
+                <text x="600" y="470" text-anchor="end" class="whitelabel">The empty quadrant</text>
+              </svg>
+              <p class="mono" style="margin-top:var(--s3);text-transform:none;letter-spacing:0;font-size:12px">Positions are the study's qualitative reads on the two axes, not scored metrics.</p>
+            </div>
+
+            <div class="block">
+              <h4>What came out</h4>
+              <ul class="bullets">
+                <li><b>The audience had already left television.</b> The overwhelming majority consumed news on mobile and social platforms; TV-only viewers were a small minority. For a channel that had only just arrived on satellite TV, that reframed the whole growth question.</li>
+                <li><b>The problem was reach, not quality.</b> Argus scored well with the people who watched it and still sat third on share of viewership in both digital and TV. Satisfaction was not the constraint. Discovery was.</li>
+                <li><b>Format beat content, decisively.</b> Short-form video massively outperformed full episodes of the same material. On one show, in the same format and the same slot, captions framed around family and emotional drama drew 258,000 views against 380 for conventional news captions. Same content. Different framing.</li>
+                <li><b>The podcast was the sleeper asset</b> — averaging roughly nine times the views of the next-best show, and being run as a side project rather than a brand.</li>
+              </ul>
+            </div>
+
+            <div class="pull">“For the people of Odisha who deserve to be heard, Argus News is the only channel that fearlessly gives them a voice.”</div>
+
+            <div class="block">
+              <h4>Seven recommendations, each tied to the evidence that produced it</h4>
+              <p class="measure">Scale the badly under-invested WhatsApp channel · build the podcast into a premium content brand · produce platform-native short-form instead of re-cutting live TV · run village-level events · create a panchayat-level youth community for news and complaints · build a CSR arm · run corporate and campus outreach.</p>
+            </div>
+          </div>
+
+          <aside class="aside">
+            <h4>What I'd say if challenged</h4>
+            <p>The survey is 76 responses collected by convenience sampling, and the satisfaction rating rests on a small sub-sample. I wrote that limitation into the report myself before anyone asked. It is directionally sound and it is not projectable to four crore people — with budget I would have stratified by district and age and run a minimum of 400.</p>
+            <h4 style="margin-top:var(--s5)">Tools</h4>
+            <div class="chips">
+              <span class="chip">Google Forms</span><span class="chip">Google Sheets</span><span class="chip">YouTube Analytics</span><span class="chip">Perceptual mapping</span><span class="chip">SWOT</span>
+            </div>
+          </aside>
+        </div>
+        </div>
+      </article>
+
+      <!-- ─── PROJECT 02 ─── -->
+      <!-- CLEARED — Muthoot Finance named with permission. -->
+      <article class="ptile rv" id="project-goldloan">
+        <button class="ptile__head" type="button" aria-expanded="false">
+          <div>
+            <div class="proj__no">02 / Campaign effectiveness</div>
+            <h3 class="proj__title">A campaign 92% of people understood and 27% preferred</h3>
+          </div>
+          <div class="proj__meta">
+            India's gold loan market · Muthoot Finance campaign<br>
+            ABM Communications<br>
+            Apr–Jun 2026
+          </div>
+                <div class="method">
+          <span>Market structure</span><i>→</i><span>Communication audit</span><i>→</i><span>Stimulus test</span><i>→</i><span>Diagnosis</span>
+        </div>
+        </button>
+
+
+        <div class="ptile__body"><div class="proj__body">
+          <div>
+            <div class="block">
+              <h4>The ask</h4>
+              <p class="measure">Understand the Indian gold loan market and how borrowers behave, evaluate how the category communicates, and assess whether a running campaign was actually working.</p>
+            </div>
+
+            <div class="block">
+              <h4>What I did</h4>
+              <ul class="bullets">
+                <li><b>Mapped the market's structure</b> — size, growth and drivers; the split between the organised sector and the unorganised one that still holds the majority of it; and how banks and NBFCs compete on different axes, NBFCs winning on disbursal speed and rural reach, banks on rate.</li>
+                <li><b>Worked the product mechanics</b> — in-branch versus doorstep and digital journeys, documentation, repayment structures, tenure and loan-to-value, including a worked LTV calculation on a 50g 22-carat example and the effect of the RBI's June 2025 Lending Against Gold Collateral Directions, under which bullet-repayment LTV is computed inclusive of accrued interest at maturity.</li>
+                <li><b>Analysed how every major brand communicates</b>, using a four-level communication framework applied across the category, plus a full teardown of Muthoot Finance's campaign portfolio — the celebrity trust platform, the 2026 outdoor campaign repositioning gold from distress to empowerment, the user-generated storytelling series and the Mahakumbh activation.</li>
+                <li><b>Ran the effectiveness study</b> — showed 100 respondents the campaign film, then asked structured questions on recall, message clarity, emotional response, credibility and brand preference. Analysed in Excel.</li>
+              </ul>
+            </div>
+
+            <div class="block">
+              <h4>The finding, in one chart</h4>
+              <div class="split" id="splitChart">
+                <div class="split__row"><span>Message clarity</span><div class="split__bar"><div class="split__fill good" data-w="92"></div></div><span class="split__val">92%</span></div>
+                <div class="split__row"><span>Category awareness</span><div class="split__bar"><div class="split__fill good" data-w="95"></div></div><span class="split__val">95%</span></div>
+                <div class="split__row"><span>Brand familiarity</span><div class="split__bar"><div class="split__fill good" data-w="80"></div></div><span class="split__val">80%</span></div>
+                <div class="split__row"><span>Believability</span><div class="split__bar"><div class="split__fill bad" data-w="67"></div></div><span class="split__val">67%</span></div>
+                <div class="split__row"><span>Brand preference</span><div class="split__bar"><div class="split__fill bad" data-w="27"></div></div><span class="split__val">27%</span></div>
+                <div class="split__row"><span>Would not prefer</span><div class="split__bar"><div class="split__fill bad" data-w="57"></div></div><span class="split__val">57%</span></div>
+              </div>
+            </div>
+
+            <div class="pull">Clarity is not preference. The campaign had solved comprehension and recall and had not touched credibility or customer benefit — the two things that actually move a borrower.</div>
+
+            <div class="block">
+              <h4>The structural insight</h4>
+              <p class="measure">Indian households hold an enormous stock of gold and only a small single-digit share of it is pledged formally. The category's real competitor is not a rival lender's interest rate — it is the borrower's psychological barrier: stigma, fear of auction, and doubt about honest valuation. Nobody in the category was advertising against that. Spending more on the same message would have bought more of the wrong outcome.</p>
+            </div>
+          </div>
+
+          <aside class="aside">
+            <h4>What I'd say if challenged</h4>
+            <p>The respondent base skews male and toward a business background, concentrated in one age band — it reads the campaign's likely-buyer segment well and it does not represent all of India. And the 27% preference is stated preference after a single exposure, not behaviour. It tells you the message is not converting; it does not tell you the brand is not.</p>
+            <h4 style="margin-top:var(--s5)">Evidence base</h4>
+            <p>38 numbered sources, including RBI, ICRA, PwC, EY, S&amp;P Global, TransUnion CIBIL and ICICI Securities.</p>
+            <div class="chips"><span class="chip">Excel</span><span class="chip">Questionnaire design</span><span class="chip">Communication framework</span></div>
+          </aside>
+        </div>
+        </div>
+      </article>
+
+      <!-- ─── PROJECT 03 ─── -->
+      <article class="ptile rv" id="project-reliance">
+        <button class="ptile__head" type="button" aria-expanded="false">
+          <div>
+            <div class="proj__no">03 / Strategy</div>
+            <h3 class="proj__title">Nostalgia sells ₹10 sodas. Does it sell smart TVs?</h3>
+          </div>
+          <div class="proj__meta">
+            Reliance Retail · Campa, BPL, Kelvinator<br>
+            Academic · Strategy deck<br>
+            <!-- TODO: individual or group? Your contribution? Grade or faculty feedback? [NEED FROM ME] -->
+            2026
+          </div>
+          <div class="method">
+            <span>Market scan</span><i>&rarr;</i><span>ERRC / Blue Ocean</span><i>&rarr;</i><span>Ecosystem proposal</span>
+          </div>
+        </button>
+
+        <div class="ptile__body"><div class="proj__body">
+          <div>
+            <div class="block">
+              <h4>The ask</h4>
+              <p class="measure">Reliance Retail has been acquiring heritage Indian brands — Campa, BPL, Kelvinator — to skip the long, expensive phase of building brand equity from scratch. Does that work?</p>
+            </div>
+            <div class="block">
+              <h4>The argument, in four moves</h4>
+              <ul class="bullets">
+                <li><b>What they are actually buying is recall.</b> The early FMCG wins came from three things together: nostalgia, aggressive pricing and deep kirana penetration. Nostalgia lowers customer acquisition cost. It does not manufacture trust.</li>
+                <li><b>The category breaks the model.</b> A ₹10 soda is instant-gratification, low-risk, low-involvement. A ₹20,000+ appliance requires trust in the technology, the reliability and the service network. And Gen Z has no lived memory of Kelvinator or BPL, so for a large slice of the market the nostalgia asset is worth nothing at all.</li>
+                <li><b>Price-led entry is a trap.</b> Undercutting incumbents by 20–30% buys short-term volume and buys margin compression, quality-perception damage and weak brand credibility across years three and four. Price competition creates a Red Ocean, not an advantage.</li>
+                <li><b>The alternative — “Modernised Nostalgia”.</b> Applied the ERRC grid: eliminate the cost and time of building equity from zero; reduce middlemen markups and shelf-price inefficiency; raise distribution reach and retailer margins; create heritage trust fused with future-ready innovation. Benchmarked the Bosch Smart Security ecosystem model and proposed a Jio-powered connected-living ecosystem — appliances as nodes in an integrated smart home rather than standalone devices, backed by specialised service hubs and extended warranties as trust multipliers.</li>
+              </ul>
+            </div>
+            <div class="pull">The differentiator isn't the logo — it's the platform.</div>
+          </div>
+          <aside class="aside">
+            <h4>Frameworks</h4>
+            <div class="chips"><span class="chip">Blue Ocean</span><span class="chip">ERRC grid</span><span class="chip">Ecosystem competition</span></div>
+            <h4 style="margin-top:var(--s5)">Artefact</h4>
+            <p>A six-page strategy deck.
+            <!-- TODO: embed the deck — put reliance-deck.pdf next to index.html and link it here --></p>
+          </aside>
+        </div>
+        </div>
+      </article>
+
+      <!-- ─── PROJECT 04 ─── -->
+      <article class="ptile rv" id="project-n8n">
+        <button class="ptile__head" type="button" aria-expanded="false">
+          <div>
+            <div class="proj__no">04 / Automation</div>
+            <h3 class="proj__title">Lead scoring and instant response automation</h3>
+          </div>
+          <div class="proj__meta">
+            Custom jewellery business<br>
+            Academic · 13-node n8n workflow<br>
+            2026
+          </div>
+          <div class="method">
+            <span>Webhook</span><i>&rarr;</i><span>LLM scoring</span><i>&rarr;</i><span>Branch</span><i>&rarr;</i><span>Auto-reply &amp; alert</span>
+          </div>
+        </button>
+
+        <div class="ptile__body"><div class="proj__body">
+          <div>
+            <div class="block">
+              <h4>The problem</h4>
+              <p class="measure">A small custom-jewellery business gets enquiries through a website form. Every enquiry looks identical in the inbox. Someone ready to buy a bridal set and someone idly asking about prices get the same delay and the same generic reply — so the ready buyer goes cold while the team works through the queue.</p>
+            </div>
+
+            <div class="block">
+              <h4>What I built — click any node</h4>
+              <div class="flow" id="flow">
+                <button class="node" aria-expanded="false"><b>01 · Webhook</b><span>Catch the form</span><p>Receives the website form submission and starts the run.</p></button>
+                <button class="node" aria-expanded="false"><b>02 · Code</b><span>Normalise</span><p>Turns the payload into a clean lead object, handling both current and legacy field names so old forms don't break the flow.</p></button>
+                <button class="node" aria-expanded="false"><b>03 · OpenAI</b><span>Score intent 0–100</span><p>GPT-4.1-mini scores purchase intent on urgency, budget readiness and buying intent, returning structured JSON with its reasoning.</p></button>
+                <button class="node" aria-expanded="false"><b>04 · Code</b><span>Parse &amp; bucket</span><p>Parses the model output with fallbacks for a different model envelope, markdown-fenced JSON and outright parse failure, so a malformed response never kills the run. Buckets: hot ≥70, warm 40–69, cold under 40.</p></button>
+                <button class="node" aria-expanded="false"><b>05 · IF</b><span>Branch on score</span><p>Splits the run into the hot path and the nurture path.</p></button>
+                <button class="node" aria-expanded="false"><b>06a · OpenAI</b><span>Hot reply</span><p>Drafts a warm, non-salesy reply under 100 words that references the specific enquiry and proposes one concrete next step.</p></button>
+                <button class="node" aria-expanded="false"><b>07a · Gmail</b><span>Send instantly</span><p>Sends the hot reply. A filter checks a usable email address exists before this fires.</p></button>
+                <button class="node" aria-expanded="false"><b>08a · Slack</b><span>Alert sales</span><p>Posts score, reasoning, contact details and the original message to the sales channel so a human can call while intent is still live.</p></button>
+                <button class="node" aria-expanded="false"><b>06b · OpenAI</b><span>Nurture reply</span><p>Drafts a low-pressure reply under 90 words offering one genuinely useful piece of advice. No push.</p></button>
+                <button class="node" aria-expanded="false"><b>07b · Gmail</b><span>Send nurture</span><p>Sends it. Same email validation as the hot path.</p></button>
+                <button class="node" aria-expanded="false"><b>09 · Sheets</b><span>Log everything</span><p>Appends every lead with name, email, company, score, category, the model's reasoning and a timestamp — so the business has a scored pipeline, not an inbox.</p></button>
+              </div>
+            </div>
+
+            <div class="block">
+              <h4>Two design decisions worth defending</h4>
+              <ul class="bullets">
+                <li><b>Every branch validates before it sends.</b> A filter checks a usable email address exists before either Gmail node fires, so a bad submission fails silently instead of erroring the workflow.</li>
+                <li><b>The cold path still gets a reply.</b> The easy build sends hot leads a reply and drops everyone else. But a cold lead who gets one useful, unpushy answer is a warm lead in three months. Ignoring them is how small businesses lose their own pipeline.</li>
+              </ul>
+            </div>
+
+            <div class="pull">The business problem was response latency and register — not response volume.</div>
+          </div>
+
+          <aside class="aside">
+            <h4>What I'd say if challenged</h4>
+            <p>This was built and demonstrated as an academic project, not deployed into a live business, so I have no conversion data behind it. What I can defend is every design decision in it and why each one is there. I am not an engineer — I am someone who can build the automation a business actually needs and explain the reasoning.</p>
+            <h4 style="margin-top:var(--s5)">Stack</h4>
+            <div class="chips"><span class="chip">n8n</span><span class="chip">GPT-4.1-mini</span><span class="chip">Gmail API</span><span class="chip">Slack API</span><span class="chip">Sheets API</span><span class="chip">JavaScript</span></div>
+            <!-- TODO: embed the screen-recorded demo here (YouTube unlisted link is easiest) -->
+          </aside>
+        </div>
+        </div>
+      </article>
+
+      <!-- ─── PROJECT 05 ─── -->
+      <article class="ptile rv" id="project-genai">
+        <button class="ptile__head" type="button" aria-expanded="false">
+          <div>
+            <div class="proj__no">05 / Qualitative research</div>
+            <h3 class="proj__title">When “better” AI output makes people feel worse</h3>
+          </div>
+          <div class="proj__meta">
+            Business Research Methods<br>
+            Group project, 10 members<br>
+            Feb 2026
+          </div>
+          <div class="method">
+            <span>Interviews</span><i>&rarr;</i><span>Transcription</span><i>&rarr;</i><span>Thematic coding</span><i>&rarr;</i><span>Theory</span>
+          </div>
+        </button>
+
+        <div class="ptile__body"><div class="proj__body">
+          <div>
+            <div class="block">
+              <h4>The research problem</h4>
+              <p class="measure">GenAI tools reliably produce cleaner, faster, more polished work. The assumption is that better output means more satisfied users. Across our interviews it repeatedly did not — people reported discomfort, reduced sense of authenticity and quiet self-doubt <em>because</em> the output was good.</p>
+            </div>
+            <div class="block">
+              <h4>Method</h4>
+              <p class="measure">Exploratory qualitative design — the phenomenon is too new to hypothesis-test. Nine in-depth semi-structured interviews with long-term AI users, audio-recorded and transcribed verbatim, then thematically analysed through open, axial and selective coding. Grounded in Self-Determination Theory, Identity and Authenticity theory, and the Job Demands–Resources model.</p>
+            </div>
+            <div class="block">
+              <h4>Four themes</h4>
+              <ul class="bullets">
+                <li><b>The efficiency paradox.</b> Users produce more and feel they contribute less. The role shifts from creator to verifier.</li>
+                <li><b>Ownership erosion.</b> The work is technically superior and emotionally unowned — a diminished sense of achievement even on better output.</li>
+                <li><b>Authenticity mismatch.</b> The output does not sound like the person. In professional communication, where a personal register is the differentiator, that reads as generic.</li>
+                <li><b>Pragmatic adoption through human governance.</b> The users who stayed satisfied were the ones who kept judgement in their own hands.</li>
+              </ul>
+            </div>
+            <div class="block">
+              <h4>The business implication</h4>
+              <p class="measure">Organisations rolling out AI on a pure-productivity business case are measuring the wrong variable. Every technical gain in our coding map paired with a psychological strain — rapid generation with cognitive overload from constant verification, polished output with loss of personal voice. The recommendation: position AI as complement not replacement, build human-in-the-loop processes where people ideate first and AI refines, invest in AI literacy, and measure process and initiative rather than only finished output.</p>
+            </div>
+          </div>
+          <aside class="aside">
+            <h4>Honest framing</h4>
+            <p>This was a 10-member group study and is presented as one. [NEED FROM ME: which chapters or interviews were yours — without it, the first follow-up question exposes the gap.]</p>
+            <h4 style="margin-top:var(--s5)">Method skills</h4>
+            <div class="chips"><span class="chip">Interview design</span><span class="chip">Verbatim transcription</span><span class="chip">Thematic coding</span><span class="chip">Literature synthesis</span></div>
+          </aside>
+        </div>
+        </div>
+      </article>
+
+      <!-- ─── PROJECT 06 ─── -->
+      <article class="ptile rv" id="project-digimarket">
+        <button class="ptile__head" type="button" aria-expanded="false">
+          <div>
+            <div class="proj__no">06 / Digital marketing</div>
+            <h3 class="proj__title">A jewellery business built, launched and measured end to end</h3>
+          </div>
+          <div class="proj__meta">
+            Custom jewellery · Digital Marketing course<br>
+            Group project<br>
+            2026
+          </div>
+          <div class="method">
+            <span>Website build</span><i>&rarr;</i><span>SEO</span><i>&rarr;</i><span>Campaign</span><i>&rarr;</i><span>Analytics</span>
+          </div>
+        </button>
+
+        <div class="ptile__body"><div class="proj__body">
+          <div>
+            <div class="block">
+              <h4>The ask</h4>
+              <p class="measure">Build a real business presence from scratch — website, search optimisation, social media campaigns, analytics — and run it as a live operation, not a classroom exercise.</p>
+            </div>
+
+            <div class="block">
+              <h4>What we did</h4>
+              <ul class="bullets">
+                <li><b>Built and hosted the business website</b> for a custom jewellery brand. [NEED FROM ME: URL — a working link is the strongest proof this tile can carry.]</li>
+                <li><b>Set up Google Analytics</b> to track visitor behaviour, traffic sources, and conversion paths from day one.</li>
+                <li><b>Ran SEO</b> — on-page optimisation, keyword targeting and content structure. [NEED FROM ME: which keywords? What did the traffic look like before and after?]</li>
+                <li><b>Designed and executed Instagram campaigns</b> — content strategy, posting cadence, paid or organic reach. [NEED FROM ME: what did the analytics show? Impressions, engagement, any conversion data?]</li>
+                <li><b>Applied the full digital marketing stack</b> — campaign strategy, content marketing, social media marketing, and performance measurement as an integrated system rather than isolated tactics.</li>
+              </ul>
+            </div>
+
+            <div class="pull">The site is live. [NEED FROM ME: paste the URL here — it does more than any description.]</div>
+          </div>
+
+          <aside class="aside">
+            <h4>What I'd say if challenged</h4>
+            <p>This was a group project. [NEED FROM ME: what was your specific contribution? Which parts did you own — the site build, the analytics setup, the campaign strategy?]</p>
+            <h4 style="margin-top:var(--s5)">Stack</h4>
+            <div class="chips"><span class="chip">Google Analytics</span><span class="chip">SEO</span><span class="chip">Instagram</span><span class="chip">Content strategy</span></div>
+          </aside>
+        </div>
+        </div>
+      </article>
+
+      <!-- ─── PROJECT 07 ─── -->
+      <article class="ptile rv" id="project-levis">
+        <button class="ptile__head" type="button" aria-expanded="false">
+          <div>
+            <div class="proj__no">07 / Strategy</div>
+            <h3 class="proj__title">Where does a premium apparel brand grow next?</h3>
+          </div>
+          <div class="proj__meta">
+            Levi's India · Premium clothing<br>
+            Academic<br>
+            2026
+          </div>
+          <div class="method">
+            <span>Consumer data</span><i>&rarr;</i><span>Ansoff grid</span><i>&rarr;</i><span>BCG matrix</span><i>&rarr;</i><span>Positioning</span>
+          </div>
+        </button>
+
+        <div class="ptile__body"><div class="proj__body">
+          <div>
+            <div class="block">
+              <h4>The ask</h4>
+              <p class="measure">Analyse premium clothing trends in India and map a growth strategy for Levi's using consumer response data and outlet-level data.</p>
+            </div>
+            <div class="block">
+              <h4>What I did</h4>
+              <ul class="bullets">
+                <li><b>Applied the Ansoff Grid</b> to map Levi's current product-market combinations and identify which growth path — market penetration, development, product development or diversification — the brand should prioritise in India.</li>
+                <li><b>Built a BCG Matrix</b> from consumer and outlet data to classify Levi's product lines by relative market share and growth rate, separating the stars from the question marks.</li>
+                <li><b>Concluded with a positioning strategy</b> built on iconic branding, digital engagement and sustainable style — arguing that Levi's India edge is heritage credibility in a market where new entrants compete on trend speed alone.</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="aside">
+            <h4>Honest framing</h4>
+            <p>[NEED FROM ME: individual or group? How many consumer responses? How many outlets? Primary or secondary data?]</p>
+            <h4 style="margin-top:var(--s5)">Frameworks</h4>
+            <div class="chips"><span class="chip">Ansoff Grid</span><span class="chip">BCG Matrix</span><span class="chip">Brand positioning</span></div>
+          </aside>
+        </div>
+        </div>
+      </article>
+
+      <!-- ─── PROJECT 08 ─── -->
+      <article class="ptile rv" id="project-microventure">
+        <button class="ptile__head" type="button" aria-expanded="false">
+          <div>
+            <div class="proj__no">08 / Economics</div>
+            <h3 class="proj__title">Running a real business to 23% net profit</h3>
+          </div>
+          <div class="proj__meta">
+            Micro-economics project<br>
+            Micro-venture execution<br>
+            2025
+          </div>
+          <div class="method">
+            <span>Launch</span><i>&rarr;</i><span>Demand clustering</span><i>&rarr;</i><span>Elasticity</span><i>&rarr;</i><span>Pricing</span>
+          </div>
+        </button>
+
+        <div class="ptile__body"><div class="proj__body">
+          <div>
+            <div class="block">
+              <h4>The ask</h4>
+              <p class="measure">Run an actual micro-business from scratch — not a case study, not a simulation — and apply economic modelling to optimise it.</p>
+            </div>
+            <div class="block">
+              <h4>What I did</h4>
+              <ul class="bullets">
+                <li><b>Launched and operated a micro-venture</b>, selling a real product to real customers over a defined period. [NEED FROM ME: what did you sell, to whom, over how long? Revenue in rupees?]</li>
+                <li><b>Identified demand clusters</b> by mapping customer segments and their purchasing patterns to find where volume concentrated.</li>
+                <li><b>Analysed price elasticity</b> — derived demand curves to understand how price changes affected quantity demanded, and used diminishing marginal utility to explain why.</li>
+                <li><b>Achieved 23% net profit</b> by applying economic modelling to pricing decisions rather than guessing. [NEED FROM ME: 23% of what base?]</li>
+              </ul>
+            </div>
+            <div class="pull">The only project in my record with a hard outcome number from something I ran rather than analysed.</div>
+          </div>
+          <aside class="aside">
+            <h4>What I'd say if challenged</h4>
+            <p>[NEED FROM ME: solo or team? Can you explain the regression — what was regressed on what, R², p-value? If not, this tile publishes without the regression claim.]</p>
+            <h4 style="margin-top:var(--s5)">Concepts applied</h4>
+            <div class="chips"><span class="chip">Price elasticity</span><span class="chip">Demand curves</span><span class="chip">Economic modelling</span></div>
+          </aside>
+        </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ZONE 5 — ACHIEVEMENTS ══════════════════ -->
+<section class="section section--sunk" id="achievements">
+  <div class="wrap">
+    <div class="eyebrow rv">Achievements &amp; certifications</div>
+    <div class="about">
+      <div class="rv">
+        <h2 class="h2 mb-lg">Recognition</h2>
+        <ul class="tl">
+          <li id="ach-kick">
+            <div class="tl__year">2016</div>
+            <h3 class="h3">Third place, Odisha State Kick Boxing Championship</h3>
+            <div class="tl__org">Jharsuguda District Kickboxing Association · State level</div>
+            <p>Competitive kickboxing through school. It is on this site and not buried on a CV because it is the most differentiating line I have.</p>
+          </li>
+          <li>
+            <div class="tl__year">2018</div>
+            <h3 class="h3">33rd, Navodaya's Talent Search Contest</h3>
+            <div class="tl__org">NESWC Bhopal · National level</div>
+          </li>
+          <li>
+            <div class="tl__year">2020</div>
+            <h3 class="h3">Medha Quest Talent Hunt Programme</h3>
+            <div class="tl__org">Motion Academy · State level, pre-final round</div>
+            <!-- CONFIRMED — pre-final round is the canonical term. -->
+          </li>
+        </ul>
+      </div>
+      <div class="rv">
+        <h2 class="h2 mb-lg">Certifications</h2>
+        <ul class="rows">
+          <li><div class="mono">2026</div><div><b>People Management Essentials</b><br><span class="mono" style="text-transform:none;letter-spacing:0">Google, via Coursera</span></div></li>
+          <li><div class="mono">2026</div><div><b>Marketing Analytics and Measurement</b><br><span class="mono" style="text-transform:none;letter-spacing:0">Google, via Coursera</span></div></li>
+          <li><div class="mono">2026</div><div><b>Branding &amp; Design</b><br><span class="mono" style="text-transform:none;letter-spacing:0">Forage</span></div></li>
+        </ul>
+        <!--
+        TODO:UNLOCK — six more certifications are complete but need issuer/year
+        before they go on a public page. Add them here once confirmed:
+          · Statistical Methods of Decision Making — Great Learning — YEAR?
+          · Business Finance Foundation — Great Learning — YEAR?
+          · Finance Leadership Program — Skilled Sapiens — YEAR?
+          · Marketing Explorer — ISSUER? YEAR?
+          · Scope Report Design Requirements — ISSUER? YEAR?
+          · Design Power BI Reports — ISSUER? YEAR?
+        WARNING from your brief: a "Design Power BI Reports" certificate on
+        your site invites "so show me a Power BI dashboard." Either be ready
+        for that question or place it quietly rather than prominently.
+        -->
+        <p class="mono" style="margin-top:var(--s5);text-transform:none;letter-spacing:0;font-size:12px">
+          Certificates available on request.
+        </p>
+        <div style="margin-top:var(--s5);padding:var(--s4) var(--s5);background:var(--paper-raised);border:var(--hairline);border-radius:var(--r-md)">
+          <b style="font-size:var(--t-small)">25+ case competitions participated</b>
+          <p style="font-size:13px;color:var(--ink-soft);margin:var(--s2) 0 0">National and institute-level business case competitions across strategy, marketing and consulting tracks.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ZONE 6 — EXPERIENCE & EDUCATION ══════════════════ -->
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="eyebrow rv">Experience</div>
+    <div class="exp-panel rv">
+      <div class="exp-tabs">
+        <button class="exp-tab active" data-exp="exp-abm">
+          <div class="mono">Apr–Jun 2026</div>
+          <h3 class="h3">Marketing Intern</h3>
+          <div class="tl__org">ABM Communications</div>
+        </button>
+        <button class="exp-tab" data-exp="exp-cl">
+          <div class="mono">Jul–Aug 2024</div>
+          <h3 class="h3">Sales &amp; Marketing Intern</h3>
+          <div class="tl__org">Career Launcher</div>
+        </button>
+      </div>
+      <div class="exp-detail">
+        <div class="exp-content active" id="exp-abm">
+          <div class="mono" style="color:var(--brass)">Apr–Jun 2026 · 2 months</div>
+          <h3 class="h3" style="margin:var(--s2) 0 var(--s3)">Marketing Intern — Client Servicing (Market Research)</h3>
+          <div class="tl__org" style="margin-bottom:var(--s4)">ABM Communications</div>
+          <ul class="bullets">
+            <li><b>Argus News brand study.</b> Designed and executed a bilingual English-and-Odia audience survey (76 responses, fielded over 6 days); benchmarked six Odia news channels across ten dimensions; ran a programme-level YouTube audit that uncovered a 258K-vs-380 views gap driven purely by caption framing; built a perceptual map from scratch, found the white-space position, and delivered a seven-point growth roadmap.</li>
+            <li><b>Gold loan market &amp; Muthoot campaign.</b> Mapped the structural economics of India’s gold loan market — organised vs unorganised (63% still informal), bank vs NBFC competition, RBI 2025 collateral directions, LTV mechanics. Ran a 100-respondent campaign effectiveness study on Muthoot Finance’s advertising: 92% message clarity but only 27% brand preference. Identified borrower psychology — stigma, fear of auction, doubt of valuation — as the real competitor, not interest rates. Sourced across 38 references including RBI, ICRA, PwC, EY and S&amp;P Global.</li>
+            <li><b>Rath Yatra creative brief.</b> Wrote a full creative trigger on a one-day turnaround — competitive set, consumer belief, target definition, brand takeaway, supports, media mix — repositioning Argus from a channel that covers the festival to one that is part of it.</li>
+          </ul>
+        </div>
+        <div class="exp-content" id="exp-cl">
+          <div class="mono" style="color:var(--brass)">Jul–Aug 2024 · 2 months</div>
+          <h3 class="h3" style="margin:var(--s2) 0 var(--s3)">Sales &amp; Marketing Intern</h3>
+          <div class="tl__org" style="margin-bottom:var(--s4)">Career Launcher · NIT Rourkela</div>
+          <ul class="bullets">
+            <li><b>On-ground market penetration</b> for a test-prep brand inside an engineering campus — identifying which student segments (by year, branch and aspiration) were reachable and which channels worked for each.</li>
+            <li><b>Segment mapping and lead generation</b> — profiled the student population by preparation stage and exam target, then designed outreach to match: interactive campus events, peer-led sessions and targeted online campaigns.</li>
+            <li><b>Reached 250+ students</b> through a mix of on-ground events, WhatsApp outreach and online campaigns, converting campus presence into qualified leads for the client's test-prep programmes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="eyebrow rv">Leadership &amp; community</div>
+    <div class="rv" style="margin-bottom:0">
+      <div class="exp-tabs" style="display:flex;flex-direction:row;flex-wrap:wrap;gap:var(--s3)">
+        <div class="exp-tab" style="cursor:default;flex:1;min-width:180px">
+          <div class="mono">2022–25</div>
+          <h3 class="h3">Youth Coordinator, DIYA</h3>
+          <div class="tl__org">NGO, Odisha · 17 members · 3 years</div>
+        </div>
+        <div class="exp-tab" style="cursor:default;flex:1;min-width:180px">
+          <div class="mono">2022–24</div>
+          <h3 class="h3">VP, Student Council</h3>
+          <div class="tl__org">JSM Commerce College</div>
+        </div>
+        <div class="exp-tab" style="cursor:default;flex:1;min-width:180px">
+          <div class="mono">Undergrad</div>
+          <h3 class="h3">Six-village survey</h3>
+          <div class="tl__org">YCDA, Odisha · Education &amp; health</div>
+        </div>
+        <div class="exp-tab" style="cursor:default;flex:1;min-width:180px">
+          <div class="mono">2020–21</div>
+          <h3 class="h3">Free lockdown tutoring</h3>
+          <div class="tl__org">Balangir · 10 children</div>
+        </div>
+      </div><!-- /exp-tabs -->
+    </div>
+
+    <div class="eyebrow rv">Education</div>
+    <div class="rv" style="margin-bottom:0">
+      <div class="exp-tabs" style="display:flex;flex-direction:row;flex-wrap:wrap;gap:var(--s3)">
+        <div class="exp-tab" style="cursor:default;flex:1;min-width:160px">
+          <div class="mono">2025–27</div>
+          <h3 class="h3">PGDM — Marketing · Operations</h3>
+          <div class="tl__org">Great Lakes, Gurgaon</div>
+        </div>
+        <div class="exp-tab" style="cursor:default;flex:1;min-width:160px">
+          <div class="mono">2024–25</div>
+          <h3 class="h3">CAT preparation</h3>
+          <div class="tl__org">Full-time</div>
+        </div>
+        <div class="exp-tab" style="cursor:default;flex:1;min-width:160px">
+          <div class="mono">2021–24</div>
+          <h3 class="h3">B.Com (Hons) · 8/10</h3>
+          <div class="tl__org">Rajendra University, Balangir</div>
+        </div>
+        <div class="exp-tab" style="cursor:default;flex:1;min-width:160px">
+          <div class="mono">2021</div>
+          <h3 class="h3">Class XII — 89.3%</h3>
+          <div class="tl__org">Guidance English Medium School, Bhubaneswar</div>
+        </div>
+        <div class="exp-tab" style="cursor:default;flex:1;min-width:160px">
+          <div class="mono">2019</div>
+          <h3 class="h3">Class X — 87%</h3>
+          <div class="tl__org">Oriental Public School, Balangir</div>
+        </div>
+      </div><!-- /exp-tabs -->
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ ZONE 7 — CONTACT ══════════════════ -->
+<section class="section section--sunk" id="contact">
+  <div class="wrap">
+    <div class="eyebrow rv">Contact</div>
+    <div class="contact">
+      <div class="rv">
+        <h2>Ask me something specific.</h2>
+        <p class="lede" style="margin-top:var(--s5)">I am looking for roles in consumer and brand strategy, market research and consulting — particularly anything involving regional Indian markets. If that is what you are hiring for, email me.</p>
+        <div class="directs">
+          <a href="mailto:allknowledgeforall@gmail.com"><span>Email</span><span>allknowledgeforall@gmail.com</span></a>
+          <a href="https://linkedin.com/in/omprakash-meher08" target="_blank" rel="noopener"><span>LinkedIn</span><span>linkedin.com/in/omprakash-meher08</span></a>
+          <a href="tel:+917848971681"><span>Phone</span><span>+91 78489 71681</span></a>
+          <a href="#"><span>Location</span><span>Gurgaon, NCR</span></a>
+        </div>
+      </div>
+      <div class="rv">
+        <!-- TODO:FORM — sign up free at formspree.io, get a form ID, replace YOUR_ID below. Until you do, the form will not send anything. -->
+        <form action="https://formspree.io/f/YOUR_ID" method="POST">
+          <div class="field"><label for="cname">Name</label><input id="cname" name="name" type="text" autocomplete="name"></div>
+          <div class="field"><label for="cmail">Email</label><input id="cmail" name="email" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="cmsg">Message</label><textarea id="cmsg" name="message" required></textarea></div>
+          <button class="btn" type="submit">Send message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- skill popup -->
+<div class="skill-overlay" id="skillOverlay"></div>
+<div class="skill-popup" id="skillPopup">
+  <button class="skill-popup__close" id="skillPopupClose">&times;</button>
+  <div class="skill-popup__title" id="spTitle"></div>
+  <div class="skill-popup__proof" id="spProof"></div>
+  <div class="skill-popup__example" id="spExample">
+    <b>Example from my work</b>
+    <p id="spExText"><!-- populated by JS; editable via the SKILL_EXAMPLES object --></p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footrow">
+    <span>Om Prakash Meher</span>
+    <span>Consumer &amp; brand strategy · Gurgaon</span>
+    <span>&copy; <span id="yr">2026</span></span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+"use strict";
+
+var yrEl = document.getElementById('yr');
+if (yrEl) yrEl.textContent = new Date().getFullYear();
+
+var reduced  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+/* ══════════════════════════════════════════════════════════════════════
+   TREE DATA
+   The geometry below is GENERATED from this, not drawn. Add a domain and
+   a branch grows. Add an item and a fruit appears on its domain's branch.
+   ══════════════════════════════════════════════════════════════════════ */
+var DOMAINS = [
+  { id:'d0', name:'Research & fieldwork',      weight:1.00, skills:5, href:'#skill-research' },
+  { id:'d1', name:'Strategy & brand',          weight:0.92, skills:5, href:'#skill-strategy' },
+  { id:'d2', name:'Regional & vernacular markets', weight:0.80, skills:4, href:'#skill-regional' },
+  { id:'d3', name:'Automation & GenAI',        weight:0.62, skills:4, href:'#skill-tools'    },
+  { id:'d4', name:'Leadership & community',    weight:0.50, skills:3, href:'#experience'     }
+];
+
+var ITEMS = [
+  {id:'argus',    domain:'d0', type:'project', featured:true,  year:'2026',      kind:'Brand positioning',      title:'Argus News positioning study',        meta:'ABM Communications · Live client', line:'A full market, competitor and audience study of the Odisha news market, ending in a positioning statement built off a perceptual map I constructed from scratch.', facts:[['Channels benchmarked','6 across 10 dimensions'],['Survey','Bilingual, English + Odia'],['Responses','76, convenience sample'],['Output','Positioning + 7 recommendations']], href:'#project-argus'},
+  {id:'goldloan', domain:'d0', type:'project', featured:true,  year:'2026',      kind:'Campaign effectiveness', title:'92% understood it. 27% preferred it.',meta:'ABM Communications \u00b7 Muthoot Finance',line:'A structural analysis of India\u2019s gold loan market plus a 100-respondent test of Muthoot Finance\u2019s advertising that found the campaign was winning on comprehension and losing on conversion.', facts:[['Respondents','100'],['Message clarity','92%'],['Brand preference','27%'],['Sources','38, incl. RBI and ICRA']], href:'#project-goldloan'},
+  {id:'genai',    domain:'d0', type:'project', featured:false, year:'2026',      kind:'Qualitative research',   title:'When better AI output feels worse',   meta:'Business Research Methods · Group of 10', line:'Nine in-depth interviews on why people feel dissatisfied by GenAI output that is objectively better than what they would have produced themselves.', facts:[['Interviews','9, semi-structured'],['Analysis','Open, axial, selective coding'],['Themes','4'],['Sources','8 peer-reviewed']], href:'#project-genai'},
+  {id:'reliance', domain:'d1', type:'project', featured:false, year:'2026',      kind:'Strategy',               title:'Nostalgia sells \u20B910 sodas',      meta:'Reliance Retail · Academic',      line:'An ERRC and Blue Ocean analysis of Reliance\u2019s acquisition of heritage Indian brands, arguing the strategy that worked in FMCG breaks in consumer durables.', facts:[['Brands','Campa, BPL, Kelvinator'],['Frameworks','Blue Ocean, ERRC'],['Artefact','Six-page strategy deck']], href:'#project-reliance'},
+  {id:'rath',     domain:'d1', type:'project', featured:false, year:'2026',      kind:'Creative briefing',      title:'Rath Yatra creative brief',           meta:'Argus News · One-day turnaround', line:'A full creative trigger repositioning the client from a channel that covers the festival to one that is part of it.', facts:[['Turnaround','One day'],['Includes','Competitive set, consumer belief, media mix']], href:'#experience'},
+  {id:'odia',     domain:'d2', type:'project', featured:false, year:'2026',      kind:'Research design',        title:'Odia-language research design',       meta:'Regional markets',                line:'A five-part instrument written in two languages without the translation shifting what was being asked. Half the audience would not have answered in English.', facts:[['Languages','English + Odia'],['Structure','5 parts, MCQ + 1\u20137 scales'],['Field period','6 days']], href:'#skill-regional'},
+  {id:'cl',       domain:'d2', type:'project', featured:false, year:'2024',      kind:'Field marketing',        title:'Campus penetration, NIT Rourkela',    meta:'Career Launcher · 2 months',      line:'On-ground market penetration for a test-prep brand inside an engineering campus: segment mapping, online and offline campaigns, interactive events.', facts:[['Reach','250+ students'],['Channels','On-ground + online']], href:'#experience'},
+  {id:'n8n',      domain:'d3', type:'project', featured:true,  year:'2026',      kind:'Automation',             title:'Lead scoring automation',             meta:'Custom jewellery business · Academic', line:'A 13-node workflow that scores every inbound lead with an LLM, replies within seconds in the right register, alerts sales on hot leads, and logs everything to a sheet.', facts:[['Nodes','13'],['Scoring','0\u2013100 on intent'],['Buckets','Hot \u226570, warm 40\u201369, cold <40'],['Services','5 APIs orchestrated']], href:'#project-n8n'},
+  {id:'digimarket',domain:'d3', type:'project', featured:false, year:'2026',      kind:'Digital marketing',    title:'End-to-end jewellery business',      meta:'Digital Marketing course \u00b7 Group', line:'Built and launched a jewellery business website from scratch with Google Analytics, SEO and Instagram campaigns \u2014 every aspect of digital marketing applied to one live business.', facts:[['Website','Live'],['Analytics','Google Analytics'],['Campaigns','Instagram'],['Team','Group']], href:'#project-digimarket'},
+  {id:'levis',    domain:'d1', type:'project', featured:false, year:'2026',      kind:'Strategy',               title:'Levi\u2019s India growth strategy',    meta:'Academic \u00b7 Ansoff + BCG',     line:'An Ansoff and BCG analysis of Levi\u2019s India using consumer and outlet data, concluding with a positioning strategy built on iconic branding, digital engagement and sustainable style.', facts:[['Frameworks','Ansoff Grid, BCG Matrix'],['Focus','Premium apparel'],['Output','Growth + positioning strategy']], href:'#project-levis'},
+  {id:'microventure',domain:'d1', type:'project', featured:false, year:'2025',   kind:'Economics',              title:'Micro-venture \u2014 23% net profit', meta:'Micro-economics project',        line:'Ran a real micro-business from scratch and applied economic modelling \u2014 demand clustering, price elasticity and regression-based pricing \u2014 to achieve a 23% net profit.', facts:[['Net profit','23%'],['Methods','Demand curves, elasticity, clustering']], href:'#project-microventure'},
+  {id:'diya',     domain:'d4', type:'award',   featured:false, year:'2022\u201325', kind:'Leadership',          title:'Block Youth Coordinator, DIYA',       meta:'NGO, Odisha · 3 years',           line:'Led a team across a block running youth development and outreach programmes. The longest-running responsibility on my record.', facts:[['Team','17 active members'],['Duration','3 years']], href:'#experience'},
+  {id:'ycda',     domain:'d4', type:'award',   featured:false, year:'Undergrad', kind:'Field research',         title:'Six-village field survey, YCDA',      meta:'NGO, Odisha',                     line:'Led a field survey on education, health and girls\u2019 schooling; organised a health seminar and ran consultations with parents. It predates both internships.', facts:[['Villages','6'],['Topics','Education, health, schooling']], href:'#experience'},
+  {id:'kick',     domain:'d4', type:'award',   featured:false, year:'2016',      kind:'Achievement',            title:'Odisha State Kick Boxing, third',     meta:'JDKA · State level',              line:'Third place at the state championship. It is on this site and not buried on a CV because it is the most differentiating line I have.', facts:[['Placing','3rd'],['Level','State']], href:'#ach-kick'},
+  {id:'covid',    domain:'d4', type:'award',   featured:false, year:'2020',      kind:'Community',              title:'Free lockdown tutoring',              meta:'Balangir, Odisha',                line:'Started and ran free tutoring and learning activities in my village when schools were shut.', facts:[['Children taught','10']], href:'#experience'}
+];
+
+/* Deterministic pseudo-random, seeded so the tree is identical every load */
+function mulberry(a){
+  return function(){
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    var t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+var rnd = mulberry(917341);
+
+/* ══════════════════════════════════════════════════════════════════════
+   LAYOUT — computed once, shared by the WebGL scene and the SVG fallback
+   ══════════════════════════════════════════════════════════════════════ */
+var TOTAL_SKILLS = DOMAINS.reduce(function(s,d){ return s + d.skills; }, 0);
+var TRUNK_H = Math.max(6, Math.min(11, 6 + 0.35 * TOTAL_SKILLS));
+var GOLDEN = 0.618 * Math.PI * 2;
+
+function buildLayout(){
+  var L = { trunk: [], branches: [], fruits: [] };
+
+  // 1. TRUNK — 4 control points with seeded lateral jitter
+  for (var i = 0; i < 4; i++){
+    var t = i / 3;
+    L.trunk.push([ (rnd() - 0.5) * 0.24 * t, TRUNK_H * t, (rnd() - 0.5) * 0.24 * t ]);
+  }
+
+  // 2. PRIMARY BRANCHES — one per skill domain, spiralling up the trunk
+  DOMAINS.forEach(function(d, i){
+    var angle  = (i / DOMAINS.length) * Math.PI * 2 + GOLDEN;
+    var pitch  = (52 - d.weight * 14) * Math.PI / 180;
+    var len    = 2.8 + d.weight * 2.4;
+    // Attach points run from low trunk right up to the crown. Stopping short
+    // leaves a bare pole above the canopy, which reads as a broken tree.
+    var spread = DOMAINS.length > 1 ? (i / (DOMAINS.length - 1)) : 0;
+    var attach = TRUNK_H * (0.42 + 0.53 * spread);
+
+    var dirX = Math.cos(angle), dirZ = Math.sin(angle);
+    var rise = Math.cos(pitch), run = Math.sin(pitch);
+
+    var pts = [];
+    for (var s = 0; s <= 3; s++){
+      var t = s / 3;
+      pts.push([
+        dirX * run * len * t + (rnd() - 0.5) * 0.3 * t,
+        attach + rise * len * t * 0.85,
+        dirZ * run * len * t + (rnd() - 0.5) * 0.3 * t
+      ]);
+    }
+    var branch = { id: d.id, name: d.name, href: d.href, weight: d.weight, pts: pts, secondaries: [], tertiaries: [] };
+
+    // 3. SECONDARY BRANCHES — one per skill inside the domain
+    for (var j = 0; j < d.skills; j++){
+      var ft = 0.35 + 0.6 * (j / Math.max(1, d.skills));
+      var base = samplePts(pts, ft);
+      var yaw = angle + (j % 2 === 0 ? 1 : -1) * (28 * Math.PI / 180) + (rnd() - 0.5) * 0.4;
+      var slen = 0.9 + d.weight * 0.9;
+      var sp = [];
+      for (var k = 0; k <= 2; k++){
+        var u = k / 2;
+        sp.push([
+          base[0] + Math.cos(yaw) * slen * u,
+          base[1] + slen * u * 0.55 + (rnd() - 0.5) * 0.15 * u,
+          base[2] + Math.sin(yaw) * slen * u
+        ]);
+      }
+      branch.secondaries.push(sp);
+
+      // 3b. TERTIARY TWIGS — density, so the canopy reads as a tree not a diagram
+      for (var q = 0; q < 3; q++){
+        var tt = 0.45 + 0.5 * (q / 3);
+        var tb = samplePts(sp, tt);
+        var tyaw = yaw + (q % 2 === 0 ? 1 : -1) * (46 * Math.PI / 180) + (rnd() - 0.5) * 0.7;
+        var tlen = 0.34 + rnd() * 0.30;
+        branch.tertiaries.push([
+          [tb[0], tb[1], tb[2]],
+          [ tb[0] + Math.cos(tyaw) * tlen,
+            tb[1] + tlen * (0.30 + rnd() * 0.45),
+            tb[2] + Math.sin(tyaw) * tlen ]
+        ]);
+      }
+    }
+    L.branches.push(branch);
+  });
+
+  // 4. FRUIT PLACEMENT — on the secondary branch of its parent domain
+  var counter = {};
+  ITEMS.forEach(function(item){
+    var b = L.branches.filter(function(x){ return x.id === item.domain; })[0] || L.branches[0];
+    counter[b.id] = (counter[b.id] || 0);
+    var sec = b.secondaries[counter[b.id] % b.secondaries.length];
+    counter[b.id]++;
+    var p = samplePts(sec, 0.92);
+    // Fruits sit slightly PROUD of the canopy rather than drooping into it —
+    // they are the interactive target and must never be buried by leaves.
+    L.fruits.push({
+      item: item,
+      pos: [ p[0], p[1] + 0.20, p[2] ],
+      scale: (item.featured ? 1.35 : 1) * (item.type === 'award' ? 0.82 : 1)
+    });
+  });
+
+  // relaxation — push colliding fruits apart, 3 passes
+  for (var pass = 0; pass < 3; pass++){
+    for (var a = 0; a < L.fruits.length; a++){
+      for (var b2 = a + 1; b2 < L.fruits.length; b2++){
+        var A = L.fruits[a].pos, B = L.fruits[b2].pos;
+        var dx = B[0]-A[0], dy = B[1]-A[1], dz = B[2]-A[2];
+        var dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+        if (dist < 0.55 && dist > 0.0001){
+          var push = (0.55 - dist) / 2;
+          B[0] += dx/dist*push; B[1] += dy/dist*push; B[2] += dz/dist*push;
+          A[0] -= dx/dist*push; A[1] -= dy/dist*push; A[2] -= dz/dist*push;
+        }
+      }
+    }
+  }
+  return L;
+}
+
+function samplePts(pts, t){
+  var n = pts.length - 1;
+  var i = Math.min(n - 1, Math.floor(t * n));
+  var lt = t * n - i;
+  return [
+    pts[i][0] + (pts[i+1][0] - pts[i][0]) * lt,
+    pts[i][1] + (pts[i+1][1] - pts[i][1]) * lt,
+    pts[i][2] + (pts[i+1][2] - pts[i][2]) * lt
+  ];
+}
+
+var LAYOUT = buildLayout();
+
+/* ══════════════════════════════════════════════════════════════════════
+   SVG FALLBACK — same layout, orthographic top-down, fully clickable
+   ══════════════════════════════════════════════════════════════════════ */
+function buildFallbackSVG(){
+  var svg = document.getElementById('fallbackTree');
+  if (!svg) return;
+  var W = 800, H = 600, cx = W/2, cy = H/2, sc = 42;
+  var out = '';
+  function px(p){ return [cx + p[0]*sc, cy + p[2]*sc]; }
+
+  LAYOUT.branches.forEach(function(b){
+    var d = b.pts.map(function(p,i){ var q = px(p); return (i?'L':'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join(' ');
+    out += '<path d="'+d+'" stroke="var(--pine)" stroke-width="3" fill="none" stroke-linecap="round"/>';
+    b.secondaries.forEach(function(s){
+      var ds = s.map(function(p,i){ var q = px(p); return (i?'L':'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join(' ');
+      out += '<path d="'+ds+'" stroke="var(--pine-lift)" stroke-width="1.5" fill="none" stroke-linecap="round"/>';
+    });
+  });
+  out += '<circle cx="'+cx+'" cy="'+cy+'" r="8" fill="var(--pine)"/>';
+  LAYOUT.fruits.forEach(function(f){
+    var q = px(f.pos);
+    out += '<a href="'+f.item.href+'" aria-label="'+f.item.title.replace(/"/g,'') +'">'
+        +  '<circle cx="'+q[0].toFixed(1)+'" cy="'+q[1].toFixed(1)+'" r="'+(6*f.scale).toFixed(1)+'" fill="var(--brass)"/>'
+        +  '<title>'+f.item.title+' — '+f.item.year+'</title></a>';
+  });
+  svg.innerHTML = out;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   WEBGL SCENE
+   ══════════════════════════════════════════════════════════════════════ */
+var stage = document.getElementById('stage');
+var canvasEl = document.getElementById('scene');
+var labelEl = document.getElementById('fruitLabel');
+var cueEl = document.getElementById('cue');
+var canopyEl = document.querySelector('.canopy');
+
+function hasWebGL(){
+  try {
+    var c = document.createElement('canvas');
+    return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl')));
+  } catch(e){ return false; }
+}
+
+var scrollTarget = 0, scrollSmooth = 0;
+var THREE_OK = (typeof THREE !== 'undefined') && hasWebGL();
+
+if (!THREE_OK){
+  document.body.classList.add('no-webgl');
+  buildFallbackSVG();
+} else {
+  initScene();
+}
+
+function cssVar(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+
+function initScene(){
+  var renderer = new THREE.WebGLRenderer({ canvas: canvasEl, antialias: !isMobile, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(42, 1, 0.1, 400);
+
+  var PINE  = new THREE.Color(cssVar('--pine')  || '#1D3B31');
+  var LIFT  = new THREE.Color(cssVar('--pine-lift') || '#2F5B4C');
+  var BRASS = new THREE.Color(cssVar('--brass') || '#A8762C');
+  var GLOW  = new THREE.Color(cssVar('--brass-glow') || '#D9A24E');
+
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xE8E2D6, 0.85));
+  var key = new THREE.DirectionalLight(0xffffff, 0.75);
+  key.position.set(6, 18, 9); scene.add(key);
+  var rim = new THREE.DirectionalLight(0xFFF3DC, 0.35);
+  rim.position.set(-9, 8, -7); scene.add(rim);
+
+  // The tree sits right of centre so the hero copy has clear paper on the left.
+  var TREE_X = isMobile ? 0 : 6.0;
+  var treeGroup = new THREE.Group();
+  treeGroup.position.x = TREE_X;
+  scene.add(treeGroup);
+
+  function curveFrom(pts){
+    return new THREE.CatmullRomCurve3(pts.map(function(p){ return new THREE.Vector3(p[0], p[1], p[2]); }));
+  }
+
+  var barkMat = new THREE.MeshStandardMaterial({ color: PINE, roughness: 0.88, metalness: 0, flatShading: true });
+  var twigMat = new THREE.MeshStandardMaterial({ color: LIFT, roughness: 0.9,  metalness: 0, flatShading: true });
+
+  // trunk (tapered)
+  var trunkCurve = curveFrom(LAYOUT.trunk);
+  var trunkGeo = new THREE.TubeGeometry(trunkCurve, 26, 0.34, 8, false);
+  var posAttr = trunkGeo.attributes.position;
+  for (var vi = 0; vi < posAttr.count; vi++){
+    var y = posAttr.getY(vi);
+    var taper = 1 - 0.86 * Math.min(1, Math.max(0, y / TRUNK_H));
+    posAttr.setX(vi, posAttr.getX(vi) * taper);
+    posAttr.setZ(vi, posAttr.getZ(vi) * taper);
+  }
+  trunkGeo.computeVertexNormals();
+  treeGroup.add(new THREE.Mesh(trunkGeo, barkMat));
+
+  // branches
+  LAYOUT.branches.forEach(function(b){
+    var c = curveFrom(b.pts);
+    treeGroup.add(new THREE.Mesh(new THREE.TubeGeometry(c, 20, 0.065 + b.weight * 0.045, 6, false), barkMat));
+    b.secondaries.forEach(function(s){
+      treeGroup.add(new THREE.Mesh(new THREE.TubeGeometry(curveFrom(s), 10, 0.026, 5, false), twigMat));
+    });
+    b.tertiaries.forEach(function(s){
+      treeGroup.add(new THREE.Mesh(new THREE.TubeGeometry(curveFrom(s), 5, 0.013, 4, false), twigMat));
+    });
+  });
+
+  // a tight contact shadow at the base — grounds the trunk without becoming a landscape
+  var shadowCanvas = document.createElement('canvas');
+  shadowCanvas.width = shadowCanvas.height = 128;
+  var sctx = shadowCanvas.getContext('2d');
+  var grad = sctx.createRadialGradient(64, 64, 0, 64, 64, 64);
+  grad.addColorStop(0, 'rgba(29,59,49,0.30)');
+  grad.addColorStop(1, 'rgba(29,59,49,0)');
+  sctx.fillStyle = grad; sctx.fillRect(0, 0, 128, 128);
+  var shadow = new THREE.Mesh(
+    new THREE.PlaneGeometry(3.4, 3.4),
+    new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(shadowCanvas), transparent: true, depthWrite: false })
+  );
+  shadow.rotation.x = -Math.PI / 2;
+  shadow.position.set(TREE_X, 0.02, 0);
+  scene.add(shadow);
+
+  // leaves — ambient only, first thing dropped on weak hardware
+  var leafCount = isMobile ? 600 : (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4 ? 900 : 1500);
+  var leafGeo = new THREE.PlaneGeometry(0.30, 0.145);
+  var leafMat = new THREE.MeshStandardMaterial({ color: LIFT, roughness: 1, side: THREE.DoubleSide, transparent: true, opacity: 0.9, flatShading: true });
+  var leaves = new THREE.InstancedMesh(leafGeo, leafMat, leafCount);
+  var dummy = new THREE.Object3D();
+  var allSecs = [];
+  LAYOUT.branches.forEach(function(b){
+    b.secondaries.forEach(function(s){ allSecs.push(s); });
+    b.tertiaries.forEach(function(s){ allSecs.push(s); allSecs.push(s); });
+  });
+  for (var li = 0; li < leafCount; li++){
+    var sec = allSecs[li % allSecs.length];
+    var p = samplePts(sec, 0.25 + rnd() * 0.75);
+    dummy.position.set(p[0] + (rnd()-0.5)*0.50, p[1] + (rnd()-0.5)*0.28, p[2] + (rnd()-0.5)*0.50);
+    // mostly flat, yawed freely — a leaf catches light on its face, so a fully
+    // random 3-axis rotation reads as broken glass rather than canopy
+    dummy.rotation.set(-Math.PI/2 + (rnd()-0.5)*0.85, rnd()*Math.PI*2, (rnd()-0.5)*0.5);
+    dummy.scale.setScalar(0.75 + rnd()*0.5);
+    dummy.updateMatrix();
+    leaves.setMatrixAt(li, dummy.matrix);
+  }
+  leaves.instanceMatrix.needsUpdate = true;
+  // InstancedMesh derives its bounding sphere from the base geometry, not the
+  // instances, so it culls itself out of frame. This is the fix.
+  leaves.frustumCulled = false;
+  treeGroup.add(leaves);
+
+  // fruits — individual meshes so hover scaling and raycasting stay simple
+  var fruitMeshes = [];
+  var projGeo  = new THREE.IcosahedronGeometry(0.17, 1);
+  var awardGeo = new THREE.OctahedronGeometry(0.15, 0);
+  LAYOUT.fruits.forEach(function(f){
+    var isAward = f.item.type === 'award';
+    var mat = new THREE.MeshStandardMaterial({
+      color: BRASS, roughness: isAward ? 0.42 : 0.52, metalness: 0.06,
+      emissive: GLOW, emissiveIntensity: isAward ? 0.28 : 0.14, flatShading: true
+    });
+    var m = new THREE.Mesh(isAward ? awardGeo : projGeo, mat);
+    m.position.set(f.pos[0], f.pos[1], f.pos[2]);
+    m.scale.setScalar(f.scale);
+    m.userData = { item: f.item, base: f.scale, hover: 0, award: isAward };
+    treeGroup.add(m);
+    fruitMeshes.push(m);
+  });
+
+  /* ── camera rig: one continuous drone take ── */
+  // Scaled to the tree's real extent (trunk ~11u, canopy radius ~6u), not to
+  // arbitrary numbers — at y=48 the tree was a speck.
+  var camPath = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(TREE_X + 0.6,  1.6, 10.5),
+    new THREE.Vector3(TREE_X - 2.4,  5.2, 11.5),
+    new THREE.Vector3(TREE_X - 6.0, 10.0, 12.0),
+    new THREE.Vector3(TREE_X - 8.0, 14.5,  8.5),
+    new THREE.Vector3(TREE_X - 5.5, 17.5,  4.0),
+    new THREE.Vector3(TREE_X + 0.0, 19.0,  0.01)
+  ], false, 'catmullrom', 0.4);
+
+  // The look target sits left of the trunk early on, so the tree composes into
+  // the right of frame and the hero copy keeps clear paper. It converges onto
+  // the trunk by the overhead orbit.
+  var OFF = isMobile ? 0 : 1;
+  var lookPath = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(TREE_X - 3.6*OFF, 5.0, 0), new THREE.Vector3(TREE_X - 3.0*OFF, 7.5, 0),
+    new THREE.Vector3(TREE_X - 2.0*OFF, 9.5, 0), new THREE.Vector3(TREE_X - 1.0*OFF, 9.5, 0),
+    new THREE.Vector3(TREE_X - 0.3*OFF, 8.5, 0), new THREE.Vector3(TREE_X,           8.0, 0)
+  ]);
+
+  var UP = new THREE.Vector3(0, 1, 0);
+  var ORBIT = 0.006;
+  var clock = new THREE.Clock();
+  var divert = null, divertT = 0;
+
+  function smoothstep(a, b, x){ var t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t*t*(3 - 2*t); }
+
+  function resize(){
+    var w = stage.clientWidth, h = stage.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  /* ── scroll progress ── */
+  function updateScroll(){
+    if (reduced){ scrollTarget = 1; return; }
+    var rect = canopyEl.getBoundingClientRect();
+    var dist = canopyEl.offsetHeight - window.innerHeight;
+    var p = dist > 0 ? (-rect.top) / dist : 1;
+    scrollTarget = Math.min(1, Math.max(0, p));
+  }
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  updateScroll();
+  scrollSmooth = scrollTarget;
+
+  /* ── hover / click ── */
+  var raycaster = new THREE.Raycaster();
+  var pointer = new THREE.Vector2(-9, -9);
+  var hovered = null, lastRay = 0;
+
+  function setPointerFromEvent(e){
+    var r = canvasEl.getBoundingClientRect();
+    pointer.x = ((e.clientX - r.left) / r.width) * 2 - 1;
+    pointer.y = -((e.clientY - r.top) / r.height) * 2 + 1;
+  }
+
+  canvasEl.addEventListener('pointermove', function(e){
+    setPointerFromEvent(e);
+    labelEl.style.left = (e.clientX - stage.getBoundingClientRect().left) + 'px';
+    labelEl.style.top  = (e.clientY - stage.getBoundingClientRect().top) + 'px';
+  });
+  canvasEl.addEventListener('pointerleave', function(){ pointer.set(-9, -9); });
+
+  canvasEl.addEventListener('click', function(e){
+    if (stage.classList.contains('parked')){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    setPointerFromEvent(e);
+    raycaster.setFromCamera(pointer, camera);
+    var hits = raycaster.intersectObjects(fruitMeshes, false);
+    if (hits.length && scrollSmooth > 0.6) goToFruit(hits[0].object);
+  });
+
+  var previewEl   = document.getElementById('preview');
+  var pvCloseEl   = document.getElementById('previewClose');
+  var pvKind = document.getElementById('pvKind'), pvTitle = document.getElementById('pvTitle');
+  var pvMeta = document.getElementById('pvMeta'), pvLine = document.getElementById('pvLine');
+  var pvFacts = document.getElementById('pvFacts'), pvCta = document.getElementById('pvCta');
+  var selected = null;
+
+  function closePreview(){
+    previewEl.classList.remove('on');
+    setTimeout(function(){ if (!previewEl.classList.contains('on')) previewEl.hidden = true; }, 320);
+    selected = null;
+    fruitMeshes.forEach(function(m){ m.userData.selected = false; });
+  }
+  pvCloseEl.addEventListener('click', closePreview);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && selected) closePreview(); });
+
+  function goToFruit(mesh){
+    var it = mesh.userData.item;
+    selected = it.id;
+    fruitMeshes.forEach(function(m){ m.userData.selected = (m.userData.item.id === it.id); });
+
+    // camera leans toward the fruit, but the page does not move — the work
+    // opens in the panel beside the tree
+    // fruits are children of treeGroup, which is offset — the divert target
+    // must be in world space or the camera leans toward the wrong point
+    divert = mesh.getWorldPosition(new THREE.Vector3()); divertT = 0;
+
+    pvKind.textContent  = it.kind || (it.type === 'award' ? 'Achievement' : 'Project');
+    pvTitle.textContent = it.title;
+    pvMeta.textContent  = (it.meta ? it.meta + ' · ' : '') + it.year;
+    pvLine.textContent  = it.line;
+    pvFacts.innerHTML   = (it.facts || []).map(function(f){
+      return '<li><b>' + f[0] + '</b><span>' + f[1] + '</span></li>';
+    }).join('');
+    pvCta.setAttribute('href', it.href);
+    pvCta.textContent = it.href.indexOf('#project-') === 0 ? 'Read the full project' : 'See it in context';
+
+    previewEl.hidden = false;
+    requestAnimationFrame(function(){ previewEl.classList.add('on'); });
+    try { if (history.replaceState) history.replaceState(null, '', it.href); } catch(e){}
+  }
+
+  // the CTA is the only thing that moves the page
+  pvCta.addEventListener('click', function(e){
+    var href = pvCta.getAttribute('href');
+    var target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    closePreview();
+    var tile = target.closest ? target.closest('.ptile') : null;
+    if (target.classList.contains('ptile')) tile = target;
+    if (tile) openTile(tile);
+    setTimeout(function(){
+      target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    }, 120);
+  });
+
+  // the accessible twin: focusing a link highlights the matching fruit
+  var navLinks = document.querySelectorAll('#canopyNav a[data-fruit]');
+  Array.prototype.forEach.call(navLinks, function(a){
+    a.addEventListener('focus', function(){
+      var id = a.getAttribute('data-fruit');
+      fruitMeshes.forEach(function(m){ m.userData.forced = (m.userData.item.id === id); });
+    });
+    a.addEventListener('blur', function(){
+      fruitMeshes.forEach(function(m){ m.userData.forced = false; });
+    });
+  });
+
+  function showLabel(item){
+    labelEl.innerHTML = '<em>' + item.year + '</em><strong>' + item.title + '</strong><span>' + item.line + '</span>';
+    labelEl.classList.add('on');
+  }
+
+  /* ── overlay cross-fade ── */
+  var overlays = Array.prototype.slice.call(document.querySelectorAll('.ovl'));
+  function updateOverlays(p){
+    overlays.forEach(function(o){
+      var from = parseFloat(o.dataset.from), to = parseFloat(o.dataset.to);
+      o.classList.toggle('on', p >= from && p < to);
+    });
+    if (cueEl) cueEl.style.opacity = p > 0.02 ? 0 : 1;
+  }
+
+  /* ── parked minimap ── */
+  var parked = false;
+  function updateParked(){
+    // Park only once the stage has genuinely left the viewport. Parking early
+    // blanks the screen and cuts short the overhead dwell, which is the whole
+    // point of the interaction — that is where the fruits become clickable.
+    var should = (window.scrollY > canopyEl.offsetHeight - window.innerHeight * 0.12);
+    if (should !== parked){
+      parked = should;
+      stage.classList.toggle('parked', parked);
+      setTimeout(resize, 60);
+    }
+  }
+
+  /* ── render loop ── */
+  var frames = 0, slowSince = 0;
+  function tick(){
+    requestAnimationFrame(tick);
+    var dt = Math.min(0.05, clock.getDelta());
+    var t = clock.elapsedTime;
+
+    updateParked();
+
+    // damped scroll — input is never applied raw
+    scrollSmooth += (scrollTarget - scrollSmooth) * Math.min(1, dt * 8);
+    var p = parked ? 1 : scrollSmooth;
+
+    var base = camPath.getPointAt(Math.min(0.999, p));
+    var orbit = ORBIT * t * smoothstep(0.72, 1.0, p);
+    base.x -= TREE_X; base.applyAxisAngle(UP, orbit); base.x += TREE_X;
+    if (!reduced) base.y += Math.sin(t * 0.6) * 0.05 * (1 - p);
+
+    if (divert){
+      divertT = Math.min(1, divertT + dt * 1.1);
+      var e = 1 - Math.pow(1 - divertT, 3);
+      var dir = divert.clone().sub(base).multiplyScalar(0.35 * Math.sin(e * Math.PI));
+      base.add(dir);
+      if (divertT >= 1) divert = null;
+    }
+
+    camera.position.copy(base);
+    camera.lookAt(lookPath.getPointAt(Math.min(0.999, p)));
+
+    // wind: branch tips sway, trunk does not
+    if (!reduced) treeGroup.rotation.z = Math.sin(t * 0.45) * 0.006;
+
+    // raycast throttled to ~30fps, only once the canopy is readable
+    if (!parked && p > 0.6 && t - lastRay > 0.033){
+      lastRay = t;
+      raycaster.setFromCamera(pointer, camera);
+      var hits = raycaster.intersectObjects(fruitMeshes, false);
+      var next = hits.length ? hits[0].object : null;
+      if (next !== hovered){
+        hovered = next;
+        if (hovered){ showLabel(hovered.userData.item); canvasEl.style.cursor = 'pointer'; }
+        else { labelEl.classList.remove('on'); canvasEl.style.cursor = 'default'; }
+      }
+    } else if (hovered && (parked || p <= 0.6)){
+      hovered = null; labelEl.classList.remove('on'); canvasEl.style.cursor = 'default';
+    }
+
+    fruitMeshes.forEach(function(m){
+      var want = (m === hovered || m.userData.forced || m.userData.selected) ? 1 : 0;
+      m.userData.hover += (want - m.userData.hover) * Math.min(1, dt * 9);
+      m.scale.setScalar(m.userData.base * (1 + m.userData.hover * 0.20));
+      m.material.emissiveIntensity = (m.userData.award ? 0.30 : 0.15) + m.userData.hover * 0.55;
+      if (m.userData.award && !reduced) m.rotation.y += dt * 0.5;
+    });
+
+    if (!parked) updateOverlays(p);
+    renderer.render(scene, camera);
+
+    // auto-degrade: drop leaves if we sit under ~40fps for two seconds
+    // Only strip foliage on a genuinely struggling device (~22fps sustained).
+    // A 40fps threshold fires on ordinary mid-range phones and guts the visual.
+    frames++;
+    if (dt > 0.045){ if (!slowSince) slowSince = t; else if (t - slowSince > 2.5 && leaves.visible){ leaves.visible = false; slowSince = 0; } }
+    else slowSince = 0;
+  }
+  tick();
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   PAGE BEHAVIOUR (runs with or without WebGL)
+   ══════════════════════════════════════════════════════════════════════ */
+
+// sticky nav
+var navEl = document.getElementById('nav');
+window.addEventListener('scroll', function(){
+  navEl.classList.toggle('stuck', window.scrollY > window.innerHeight * 0.6);
+}, { passive: true });
+
+// scroll reveals
+var revealables = document.querySelectorAll('.rv');
+if ('IntersectionObserver' in window && !reduced){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en, i){
+      if (en.isIntersecting){
+        setTimeout(function(){ en.target.classList.add('in'); }, i * 60);
+        io.unobserve(en.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -12% 0px' });
+  Array.prototype.forEach.call(revealables, function(el){ io.observe(el); });
+} else {
+  Array.prototype.forEach.call(revealables, function(el){ el.classList.add('in'); });
+}
+
+// the 92/27 split bars animate on entry
+var chart = document.getElementById('splitChart');
+if (chart){
+  var fills = chart.querySelectorAll('.split__fill');
+  var fire = function(){ Array.prototype.forEach.call(fills, function(f, i){
+    setTimeout(function(){ f.style.width = f.dataset.w + '%'; }, i * 90);
+  }); };
+  window.__fireSplit = fire;
+  if ('IntersectionObserver' in window){
+    var io2 = new IntersectionObserver(function(e){ if (e[0].isIntersecting){ fire(); io2.disconnect(); } }, { threshold: 0.35 });
+    io2.observe(chart);
+  } else fire();
+}
+
+// experience tabs
+Array.prototype.forEach.call(document.querySelectorAll('.exp-tab'), function(tab){
+  tab.addEventListener('click', function(){
+    document.querySelectorAll('.exp-tab').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.exp-content').forEach(function(c){ c.classList.remove('active'); });
+    tab.classList.add('active');
+    var target = document.getElementById(tab.dataset.exp);
+    if (target) target.classList.add('active');
+  });
+});
+
+// skill chip popups
+// ── SKILL_EXAMPLES: edit this object to add/change examples.
+// Each key matches the chip text (case-insensitive). The value has:
+//   proof: one line of what you claim
+//   example: a concrete instance from your work (add via cowork)
+var SKILL_EXAMPLES = {
+  'primary research design': { proof: 'Two studies designed and fielded in one internship — bilingual survey + stimulus-response test.', example: 'Argus News: designed a five-part instrument in English and Odia, covering consumption, recall, satisfaction, trust and demographics.' },
+  'qualitative research': { proof: 'Nine in-depth interviews, verbatim transcription, three-stage thematic coding.', example: 'GenAI satisfaction study: identified four themes — efficiency paradox, ownership erosion, authenticity mismatch, pragmatic adoption.' },
+  'secondary research': { proof: '38 attributed sources across RBI, PwC, EY, ICRA, S&P Global.', example: 'Gold loan report: mapped organised vs unorganised market, LTV mechanics, and RBI 2025 collateral directions.' },
+  'competitive benchmarking': { proof: 'Six channels across ten dimensions.', example: 'Argus News: benchmarked OTV, Kanak, Kalinga TV, News18 Odia, Nandighosha on digital, TV, advertiser mix and engagement.' },
+  'survey analysis': { proof: 'Cross-tabs, frequency analysis, demographic and psychographic segmentation.', example: 'Argus audience survey: segmented 76 responses by age, geography, occupation and media habit to find the reach-vs-satisfaction gap.' },
+  'brand positioning': { proof: 'Perceptual map I built, six competitors plotted, statement tested four ways.', example: 'Argus News: defined two axes, plotted all competitors, found the empty quadrant, wrote the positioning statement.' },
+  'strategic frameworks': { proof: 'Blue Ocean / ERRC, Ansoff, BCG, SWOT, 4P.', example: 'Reliance Retail: applied ERRC grid to heritage-brand acquisitions, showing the FMCG strategy breaks in consumer durables.' },
+  'campaign analysis': { proof: 'Four-level communication framework + full teardown.', example: 'Gold loan study: analysed Muthoot\u2019s celebrity trust platform, outdoor repositioning, UGC series and Mahakumbh activation.' },
+  'creative briefing': { proof: 'Full creative trigger delivered on a one-day turnaround.', example: 'Rath Yatra brief: competitive set, consumer belief, target definition, brand takeaway, supports, media mix.' },
+  'bilingual research design': { proof: 'Instrument in two languages without shifting the question.', example: 'Argus survey: wrote parallel English and Odia versions, tested for equivalence before fielding.' },
+  'regional media economics': { proof: 'How a regional channel earns, what content travels.', example: 'Argus audit: found short-form captions drew 258K views vs 380 for conventional news captions — same content, different framing.' },
+  'on-ground field marketing': { proof: '250+ students reached at NIT Rourkela.', example: 'Career Launcher: mapped student segments, ran campus events and online campaigns for a test-prep brand.' },
+  'n8n': { proof: '13-node production workflow with branching and error fallbacks.', example: 'Lead scoring automation: webhook \u2192 normalise \u2192 GPT-4.1-mini scores intent \u2192 branch \u2192 draft reply \u2192 send \u2192 alert sales \u2192 log.' },
+  'openai api': { proof: 'Structured-output prompting with parse fallbacks.', example: 'n8n workflow: prompted for JSON with reasoning, built three fallback parsers for envelope changes and markdown fencing.' },
+  'odia fluency (written & spoken)': { proof: 'Designed a research instrument in Odia and specified Odia-first creative.', example: 'Half the Argus audience would not have answered in English. The Odia instrument got responses from villages, farmers and homemakers.' },
+  'google forms': { proof: 'Built and fielded the Argus audience survey instrument.', example: 'Designed a five-part bilingual questionnaire in Google Forms with MCQ and 1–7 rating scales, fielded over six days, collected 76 valid responses.' },
+  'google sheets': { proof: 'Cross-tabs, frequency analysis and response dashboards for both primary studies.', example: 'Argus survey: compiled 76 responses, ran cross-tabs by age, geography, occupation and media habit, built a response-visualiser dashboard.' },
+  'excel': { proof: 'Gold loan campaign data collection and statistical analysis.', example: 'Collected and analysed 100 campaign responses — message clarity, credibility, brand preference — using frequency counts and segmentation.' },
+  'youtube analytics': { proof: 'Programme-level digital audit of Argus News content.', example: 'Found that short-form captions drew 258K views vs 380 for standard news captions — same show, same format, 70× difference in framing alone.' },
+  'powerpoint': { proof: 'Strategy decks and creative briefs delivered as presentation artefacts.', example: 'Built a six-page Reliance Retail strategy deck covering Blue Ocean/ERRC analysis and a Jio smart-home ecosystem proposal.' },
+  'google analytics': { proof: 'Set up tracking for a live jewellery business website.', example: 'Digital marketing project: configured Google Analytics to track visitor behaviour, traffic sources and conversion paths from day one.' },
+};
+// To add more examples later in cowork, just add entries to SKILL_EXAMPLES above.
+
+var popup = document.getElementById('skillPopup');
+var overlay = document.getElementById('skillOverlay');
+var spTitle = document.getElementById('spTitle');
+var spProof = document.getElementById('spProof');
+var spExText = document.getElementById('spExText');
+var spExample = document.getElementById('spExample');
+
+function openSkillPopup(name){
+  var key = name.toLowerCase().replace(/&amp;/g,'&').replace(/&/g,'&');
+  var data = SKILL_EXAMPLES[key];
+  spTitle.textContent = name;
+  if (data){
+    spProof.textContent = data.proof;
+    spExText.textContent = data.example;
+    spExample.style.display = '';
+  } else {
+    spProof.textContent = 'Click to see proof — example will be added soon.';
+    spExample.style.display = 'none';
+  }
+  overlay.classList.add('on');
+  popup.classList.add('on');
+}
+function closeSkillPopup(){
+  overlay.classList.remove('on');
+  popup.classList.remove('on');
+}
+document.getElementById('skillPopupClose').addEventListener('click', closeSkillPopup);
+overlay.addEventListener('click', closeSkillPopup);
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeSkillPopup(); });
+
+Array.prototype.forEach.call(document.querySelectorAll('.schip'), function(chip){
+  chip.style.cursor = 'pointer';
+  chip.addEventListener('click', function(){ openSkillPopup(chip.textContent.trim()); });
+});
+
+// project tiles — collapsed by default, open in place
+function openTile(tile){
+  if (!tile || !tile.classList.contains('ptile')) return;
+  tile.classList.add('open');
+  var head = tile.querySelector('.ptile__head');
+  if (head) head.setAttribute('aria-expanded', 'true');
+}
+window.openTile = openTile;
+
+Array.prototype.forEach.call(document.querySelectorAll('.ptile__head'), function(head){
+  head.addEventListener('click', function(){
+    var tile = head.parentNode;
+    var isOpen = tile.classList.contains('open');
+    tile.classList.toggle('open', !isOpen);
+    head.setAttribute('aria-expanded', String(!isOpen));
+    // charts inside a closed tile have no layout, so the scroll observer never
+    // fires for them — kick them when the tile actually opens
+    if (!isOpen && window.__fireSplit) window.__fireSplit();
+    if (isOpen) tile.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest' });
+  });
+});
+
+// a deep link to a project opens that tile
+function openFromHash(){
+  var id = location.hash;
+  if (id && id.indexOf('#project-') === 0){
+    var t = document.querySelector(id);
+    if (t){ openTile(t); t.scrollIntoView({ behavior: 'auto', block: 'start' }); }
+  }
+}
+window.addEventListener('hashchange', openFromHash);
+openFromHash();
+
+// n8n workflow nodes
+Array.prototype.forEach.call(document.querySelectorAll('#flow .node'), function(n){
+  n.addEventListener('click', function(){
+    var open = n.getAttribute('aria-expanded') === 'true';
+    n.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+});
+
+// smooth anchor scrolling with arrival flash
+Array.prototype.forEach.call(document.querySelectorAll('a[href^="#"]'), function(a){
+  a.addEventListener('click', function(e){
+    var id = a.getAttribute('href');
+    if (id === '#' || id.length < 2) return;
+    var target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    if (target.classList.contains('ptile')) openTile(target);
+    target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    try { if (history.pushState) history.pushState(null, '', id); } catch(e){}
+    target.classList.add('arrive');
+    setTimeout(function(){ target.classList.remove('arrive'); }, 900);
+  });
+});
+
+})();
+</script>
+
+<!-- ══════════════════ ADMIN PANEL ══════════════════ -->
+<button class="adm-gear" id="admGear" onclick="ADM.showLogin()" title="Admin settings">&#9881;</button>
+
+<div class="adm-modal" id="admModal">
+  <div class="adm-modal__card" style="position:relative">
+    <button class="adm-close" onclick="ADM.hideLogin()">&times;</button>
+    <h2>Admin Login</h2>
+    <p class="sub">Sign in to edit your portfolio.</p>
+    <div class="adm-err" id="admErr">Invalid credentials.</div>
+    <label>Name (ID)</label>
+    <input type="text" id="admUser" autocomplete="off">
+    <label>Phone (Password)</label>
+    <input type="password" id="admPass">
+    <button class="adm-btn" onclick="ADM.login()">Sign In</button>
+  </div>
+</div>
+
+<div class="adm-bar" id="admBar">
+  <div class="adm-bar__label"><span class="adm-bar__dot"></span> Editing mode — changes preview live</div>
+  <button class="adm-bar__save" id="admSaveBtn" onclick="ADM.save()">Save &amp; Deploy</button>
+  <button class="adm-bar__exit" onclick="ADM.logout()">Exit</button>
+</div>
+
+<aside class="adm-panel" id="admPanel">
+  <div class="adm-panel__head">
+    <h2>Settings</h2>
+    <button onclick="ADM.togglePanel()">&times;</button>
+  </div>
+  <div class="adm-tabs" id="admTabs">
+    <button class="active" data-tab="themes" onclick="ADM.tab(this)">Themes</button>
+    <button data-tab="colors" onclick="ADM.tab(this)">Colors</button>
+    <button data-tab="content" onclick="ADM.tab(this)">Content</button>
+    <button data-tab="tiles" onclick="ADM.tab(this)">Tiles</button>
+    <button data-tab="resume" onclick="ADM.tab(this)">Resume</button>
+    <button data-tab="setup" onclick="ADM.tab(this)">GitHub</button>
+  </div>
+  <div class="adm-body">
+
+    <!-- THEMES -->
+    <div class="adm-tab active" id="admTabThemes"></div>
+
+    <!-- COLORS -->
+    <div class="adm-tab" id="admTabColors"></div>
+
+    <!-- CONTENT -->
+    <div class="adm-tab" id="admTabContent"></div>
+
+    <!-- TILES -->
+    <div class="adm-tab" id="admTabTiles"></div>
+
+    <!-- RESUME -->
+    <div class="adm-tab" id="admTabResume">
+      <h3>Upload Resume</h3>
+      <p class="hint">Upload a PDF. It will be committed to your GitHub repo so every visitor can download it.</p>
+      <div class="adm-upload" id="admUploadZone" onclick="document.getElementById('admResumeInput').click()">
+        <p>Click to select PDF<br><span style="font-size:10px;color:#71717a">Max 5 MB</span></p>
+      </div>
+      <input type="file" id="admResumeInput" accept=".pdf" style="display:none" onchange="ADM.handleResume(this)">
+      <div id="admResumeInfo" style="margin-top:12px"></div>
+    </div>
+
+    <!-- GITHUB SETUP -->
+    <div class="adm-tab" id="admTabSetup">
+      <h3>GitHub Connection</h3>
+      <p class="hint">Connect to your GitHub repo so changes are saved for all visitors. You need a <strong>Personal Access Token</strong> with <em>Contents</em> read/write permission on your portfolio repo.</p>
+      <div class="adm-setup">
+        <label>GitHub Username / Org</label>
+        <input type="text" id="admGhOwner" placeholder="e.g. omprakash">
+        <label>Repository Name</label>
+        <input type="text" id="admGhRepo" placeholder="e.g. portfolio">
+        <label>Personal Access Token</label>
+        <input type="password" id="admGhToken" placeholder="ghp_xxxxxxxxxxxx">
+        <label>Config file path (optional)</label>
+        <input type="text" id="admGhPath" placeholder="site-config.json" value="site-config.json">
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <button class="adm-btn-sm" onclick="ADM.testGh()">Test Connection</button>
+          <button class="adm-btn-outline" onclick="ADM.saveGh()">Save Setup</button>
+        </div>
+        <div id="admGhStatus" style="margin-top:12px;font-size:12px"></div>
+        <p class="hint" style="margin-top:16px"><strong>How to get a token:</strong><br>
+        GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token → select your portfolio repo → under Repository permissions set <em>Contents</em> to Read and write → Generate.</p>
+      </div>
+    </div>
+
+  </div>
+</aside>
+
+<div class="adm-toast" id="admToast"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ══════════════════════════════════════════
+   ADMIN MODULE
+   ══════════════════════════════════════════ */
+var ADM = window.ADM = {};
+
+/* ── Constants ── */
+var CRED_ID = 'Omprakash Meher';
+var CRED_PW = '7848971681';
+var LS = 'omAdmin_';
+
+var KEY_MAP = {
+  paper:'--paper', paperRaised:'--paper-raised', paperSunk:'--paper-sunk',
+  ink:'--ink', inkSoft:'--ink-soft', inkFaint:'--ink-faint',
+  pine:'--pine', pineLift:'--pine-lift', brass:'--brass', brassGlow:'--brass-glow'
+};
+
+var THEMES = [
+  {id:'original',name:'Original Cream',desc:'Warm cream with pine & brass',colors:{paper:'#FBF9F4',paperRaised:'#FFFFFF',paperSunk:'#F2EEE4',ink:'#171512',inkSoft:'#5C574E',inkFaint:'#A8A092',pine:'#1D3B31',pineLift:'#2F5B4C',brass:'#A8762C',brassGlow:'#D9A24E'}},
+  {id:'midnight',name:'Midnight',desc:'Deep navy with silver & blue',colors:{paper:'#0B1120',paperRaised:'#131B2E',paperSunk:'#060D1A',ink:'#E2E8F0',inkSoft:'#94A3B8',inkFaint:'#475569',pine:'#3B82F6',pineLift:'#60A5FA',brass:'#A78BFA',brassGlow:'#C4B5FD'}},
+  {id:'forest',name:'Dark Forest',desc:'Deep green with gold leaf',colors:{paper:'#0A1A14',paperRaised:'#0F2519',paperSunk:'#06120D',ink:'#D4E7DC',inkSoft:'#8BAA98',inkFaint:'#4A6B58',pine:'#34D399',pineLift:'#6EE7B7',brass:'#D4A34E',brassGlow:'#F0C674'}},
+  {id:'ocean',name:'Ocean Blue',desc:'Cool sea tones with coral',colors:{paper:'#F0F7FA',paperRaised:'#FFFFFF',paperSunk:'#DCE9F0',ink:'#0C1B2A',inkSoft:'#3D5A6E',inkFaint:'#8AA3B5',pine:'#0369A1',pineLift:'#0284C7',brass:'#E07B5B',brassGlow:'#F09070'}},
+  {id:'sunset',name:'Warm Sunset',desc:'Terracotta & burnt orange',colors:{paper:'#FAF5EE',paperRaised:'#FFFFFF',paperSunk:'#F0E8DB',ink:'#2D1810',inkSoft:'#6B4C3B',inkFaint:'#A89080',pine:'#B45309',pineLift:'#D97706',brass:'#DC2626',brassGlow:'#EF4444'}},
+  {id:'minimal',name:'Clean White',desc:'Pure white & black',colors:{paper:'#FFFFFF',paperRaised:'#FFFFFF',paperSunk:'#F5F5F5',ink:'#111111',inkSoft:'#555555',inkFaint:'#AAAAAA',pine:'#111111',pineLift:'#333333',brass:'#111111',brassGlow:'#555555'}},
+  {id:'charcoal',name:'Charcoal',desc:'Dark grey with amber',colors:{paper:'#1C1C1E',paperRaised:'#2C2C2E',paperSunk:'#121214',ink:'#F5F5F7',inkSoft:'#A1A1A6',inkFaint:'#636366',pine:'#FF9F0A',pineLift:'#FFB340',brass:'#FF375F',brassGlow:'#FF6482'}},
+  {id:'lavender',name:'Lavender Dream',desc:'Soft purple & rose',colors:{paper:'#F5F0FA',paperRaised:'#FFFFFF',paperSunk:'#EBE0F5',ink:'#1A0D2E',inkSoft:'#5A4570',inkFaint:'#9A88AA',pine:'#7C3AED',pineLift:'#8B5CF6',brass:'#DB2777',brassGlow:'#EC4899'}}
+];
+
+var COLOR_MAP = [
+  {key:'paper',label:'Page background',group:'Page'},
+  {key:'paperRaised',label:'Card background',group:'Page'},
+  {key:'paperSunk',label:'Sunk section background',group:'Section'},
+  {key:'ink',label:'Primary text',group:'Page'},
+  {key:'inkSoft',label:'Secondary text',group:'Page'},
+  {key:'inkFaint',label:'Faint text',group:'Section'},
+  {key:'pine',label:'Primary accent',group:'Accent'},
+  {key:'pineLift',label:'Accent hover',group:'Accent'},
+  {key:'brass',label:'Highlight / monogram',group:'Accent'},
+  {key:'brassGlow',label:'Highlight hover',group:'Accent'}
+];
+
+var SECTIONS = [
+  {id:'hero-tagline',label:'Hero tagline',sel:'.ovl--hero p'},
+  {id:'hero-heading',label:'Hero name heading',sel:'.ovl--hero h1'},
+  {id:'branches-text',label:'Branches overlay text',sel:'.ovl:nth-child(2) p'},
+  {id:'about-heading',label:'About heading',sel:'#about .h2'},
+  {id:'about-body',label:'About description',sel:'#about .measure p'},
+  {id:'work-heading',label:'Work section heading',sel:'#work .h2'},
+  {id:'skills-heading',label:'Skills section heading',sel:'#skills .h2'}
+];
+
+var DEFAULT_TILES = [
+  {id:'project-argus',title:'01 / Brand positioning',meta:'Argus News'},
+  {id:'project-goldloan',title:'02 / Campaign effectiveness',meta:'Gold loan market'},
+  {id:'project-reliance',title:'03 / Strategy',meta:'Reliance Retail'},
+  {id:'project-n8n',title:'04 / Automation',meta:'n8n workflow'},
+  {id:'project-genai',title:'05 / Qualitative research',meta:'GenAI study'},
+  {id:'project-digimarket',title:'06 / Digital marketing',meta:'Jewellery business'},
+  {id:'project-levis',title:'07 / Strategy',meta:"Levi's India"},
+  {id:'project-microventure',title:'08 / Economics',meta:'Micro-venture'}
+];
+
+/* ── State ── */
+var config = {theme:'original',customColors:{},contentEdits:{},tileOrder:[],resumeFile:''};
+var resumeBlob = null; // base64 of uploaded PDF (pending save)
+var resumeName = '';
+var panelOpen = false;
+
+/* ── Helpers ── */
+function $(id){ return document.getElementById(id); }
+function lsGet(k){ try{return JSON.parse(localStorage.getItem(LS+k));}catch(e){return null;} }
+function lsSet(k,v){ localStorage.setItem(LS+k,JSON.stringify(v)); }
+function lsDel(k){ localStorage.removeItem(LS+k); }
+
+function toast(msg,type){
+  var t = $('admToast');
+  t.textContent = msg;
+  t.className = 'adm-toast ' + (type||'ok') + ' show';
+  clearTimeout(t._t);
+  t._t = setTimeout(function(){ t.classList.remove('show'); }, 4000);
+}
+
+/* ══════════════════════════════════════════
+   PAGE LOAD — fetch config for ALL visitors
+   ══════════════════════════════════════════ */
+function applyConfig(cfg){
+  if (!cfg) return;
+  config = cfg;
+  var root = document.documentElement;
+
+  // Theme colors
+  if (cfg.theme){
+    var th = THEMES.find(function(t){return t.id===cfg.theme;});
+    if (th){
+      for (var k in th.colors){
+        if (KEY_MAP[k]) root.style.setProperty(KEY_MAP[k], th.colors[k]);
+      }
+    }
+  }
+  // Custom color overrides
+  if (cfg.customColors){
+    for (var ck in cfg.customColors){
+      if (KEY_MAP[ck]) root.style.setProperty(KEY_MAP[ck], cfg.customColors[ck]);
+    }
+  }
+  // Content edits
+  if (cfg.contentEdits){
+    SECTIONS.forEach(function(sec){
+      if (cfg.contentEdits[sec.id]){
+        var el = document.querySelector(sec.sel);
+        if (el) el.innerHTML = cfg.contentEdits[sec.id];
+      }
+    });
+  }
+  // Tile order
+  if (cfg.tileOrder && cfg.tileOrder.length){
+    var container = null, tiles = {};
+    cfg.tileOrder.forEach(function(tid){
+      var el = document.getElementById(tid);
+      if (el){ if (!container) container = el.parentNode; tiles[tid] = el; }
+    });
+    if (container){
+      cfg.tileOrder.forEach(function(tid){
+        if (tiles[tid]) container.appendChild(tiles[tid]);
+      });
+    }
+  }
+  // Resume link
+  if (cfg.resumeFile){
+    document.querySelectorAll('a[href*="Resume.pdf"], a[href*="resume.pdf"], a[href$=".pdf"]').forEach(function(a){
+      var t = a.textContent.toLowerCase();
+      if (t.indexOf('sum') > -1 || t.indexOf('download') > -1){
+        a.href = cfg.resumeFile;
+      }
+    });
+  }
+}
+
+// Fetch config on page load
+(function(){
+  fetch('site-config.json').then(function(r){
+    if (r.ok) return r.json();
+    return null;
+  }).then(function(cfg){
+    if (cfg) applyConfig(cfg);
+  }).catch(function(){});
+})();
+
+/* ══════════════════════════════════════════
+   LOGIN / LOGOUT
+   ══════════════════════════════════════════ */
+ADM.showLogin = function(){
+  $('admModal').classList.add('open');
+  $('admUser').focus();
+};
+ADM.hideLogin = function(){
+  $('admModal').classList.remove('open');
+  $('admErr').style.display = 'none';
+};
+ADM.login = function(){
+  var u = $('admUser').value.trim();
+  var p = $('admPass').value.trim();
+  if (u === CRED_ID && p === CRED_PW){
+    ADM.hideLogin();
+    $('admBar').classList.add('open');
+    $('admGear').classList.add('hidden');
+    document.body.style.paddingTop = '48px';
+    ADM.openPanel();
+    // Load GitHub setup from localStorage
+    var gh = lsGet('github');
+    if (gh){
+      $('admGhOwner').value = gh.owner || '';
+      $('admGhRepo').value = gh.repo || '';
+      $('admGhToken').value = gh.token || '';
+      if (gh.path) $('admGhPath').value = gh.path;
+    }
+    // Re-fetch current config to populate editors
+    fetch('site-config.json').then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(cfg){ if (cfg) config = cfg; ADM.renderAll(); })
+      .catch(function(){ ADM.renderAll(); });
+  } else {
+    $('admErr').style.display = 'block';
+    $('admPass').value = '';
+  }
+};
+ADM.logout = function(){
+  $('admBar').classList.remove('open');
+  $('admPanel').classList.remove('open');
+  $('admGear').classList.remove('hidden');
+  document.body.style.paddingTop = '';
+  panelOpen = false;
+  location.reload();
+};
+
+// Enter key bindings
+$('admPass').addEventListener('keydown', function(e){ if(e.key==='Enter') ADM.login(); });
+$('admUser').addEventListener('keydown', function(e){ if(e.key==='Enter') $('admPass').focus(); });
+
+/* ══════════════════════════════════════════
+   PANEL
+   ══════════════════════════════════════════ */
+ADM.openPanel = function(){
+  $('admPanel').classList.add('open');
+  panelOpen = true;
+};
+ADM.togglePanel = function(){
+  panelOpen = !panelOpen;
+  $('admPanel').classList.toggle('open', panelOpen);
+};
+ADM.tab = function(btn){
+  $('admTabs').querySelectorAll('button').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var tabs = document.querySelectorAll('.adm-body .adm-tab');
+  tabs.forEach(function(t){ t.classList.remove('active'); });
+  var target = {themes:0,colors:1,content:2,tiles:3,resume:4,setup:5}[btn.getAttribute('data-tab')];
+  if (tabs[target]) tabs[target].classList.add('active');
+};
+
+/* ══════════════════════════════════════════
+   RENDER ALL TABS
+   ══════════════════════════════════════════ */
+ADM.renderAll = function(){
+  ADM.renderThemes();
+  ADM.renderColors();
+  ADM.renderContent();
+  ADM.renderTiles();
+  ADM.renderResume();
+};
+
+/* ── Themes ── */
+ADM.renderThemes = function(){
+  var el = $('admTabThemes');
+  el.innerHTML = '<h3>Choose Theme</h3><p class="hint">Click a theme to preview it live. Save to deploy.</p><div class="adm-theme-grid" id="admThemeGrid"></div>';
+  var grid = $('admThemeGrid');
+  THEMES.forEach(function(t){
+    var card = document.createElement('div');
+    card.className = 'adm-theme-card' + (t.id === config.theme ? ' sel' : '');
+    var c = t.colors;
+    card.innerHTML = '<div class="adm-theme-preview"><span style="background:'+c.paper+'"></span><span style="background:'+c.paperSunk+'"></span><span style="background:'+c.pine+'"></span><span style="background:'+c.brass+'"></span></div><div class="tn">'+t.name+'</div><div class="td">'+t.desc+'</div>';
+    card.addEventListener('click', function(){
+      config.theme = t.id;
+      config.customColors = {};
+      // Live preview
+      var root = document.documentElement;
+      for (var k in t.colors){
+        if (KEY_MAP[k]) root.style.setProperty(KEY_MAP[k], t.colors[k]);
+      }
+      ADM.renderThemes();
+      ADM.renderColors();
+      toast('Theme previewed: ' + t.name, 'info');
+    });
+    grid.appendChild(card);
+  });
+};
+
+/* ── Colors ── */
+ADM.renderColors = function(){
+  var el = $('admTabColors');
+  var th = THEMES.find(function(t){return t.id===config.theme;}) || THEMES[0];
+  el.innerHTML = '<h3>Custom Colors</h3><p class="hint">Override individual colors. These layer on top of the active theme.</p>';
+  COLOR_MAP.forEach(function(cm){
+    var val = (config.customColors && config.customColors[cm.key]) || th.colors[cm.key] || '#000000';
+    var row = document.createElement('div');
+    row.className = 'adm-color-row';
+    row.innerHTML = '<label>'+cm.label+'</label><input type="color" value="'+val+'" data-key="'+cm.key+'"><span class="hex">'+val+'</span>';
+    var inp = row.querySelector('input');
+    var hex = row.querySelector('.hex');
+    inp.addEventListener('input', function(){
+      hex.textContent = inp.value;
+      if (!config.customColors) config.customColors = {};
+      config.customColors[cm.key] = inp.value;
+      // Live preview
+      if (KEY_MAP[cm.key]) document.documentElement.style.setProperty(KEY_MAP[cm.key], inp.value);
+    });
+    el.appendChild(row);
+  });
+  var resetBtn = document.createElement('button');
+  resetBtn.className = 'adm-btn-outline';
+  resetBtn.style.cssText = 'margin-top:14px;padding:7px 14px;background:transparent;border:1px solid #2e3340;color:#a1a1aa;border-radius:6px;font-size:12px;cursor:pointer';
+  resetBtn.textContent = 'Reset to theme defaults';
+  resetBtn.onclick = function(){
+    config.customColors = {};
+    var th2 = THEMES.find(function(t){return t.id===config.theme;}) || THEMES[0];
+    for (var k in th2.colors){
+      if (KEY_MAP[k]) document.documentElement.style.setProperty(KEY_MAP[k], th2.colors[k]);
+    }
+    ADM.renderColors();
+    toast('Colors reset', 'info');
+  };
+  el.appendChild(resetBtn);
+};
+
+/* ── Content ── */
+ADM.renderContent = function(){
+  var el = $('admTabContent');
+  el.innerHTML = '<h3>Edit Content</h3><p class="hint">Edit section text. HTML is allowed. Leave empty to keep the default.</p>';
+  SECTIONS.forEach(function(sec){
+    var div = document.createElement('div');
+    div.className = 'adm-editor';
+    var saved = (config.contentEdits && config.contentEdits[sec.id]) || '';
+    // If no saved edit, grab current page content as placeholder
+    var current = '';
+    if (!saved){ var target = document.querySelector(sec.sel); if (target) current = target.innerHTML; }
+    div.innerHTML = '<h4>'+sec.label+'</h4><textarea id="admEdit-'+sec.id+'" rows="3" placeholder="Current default text...">'+(saved || current)+'</textarea>';
+    el.appendChild(div);
+  });
+  var previewBtn = document.createElement('button');
+  previewBtn.className = 'adm-btn-sm';
+  previewBtn.style.marginTop = '12px';
+  previewBtn.textContent = 'Preview on page';
+  previewBtn.onclick = function(){
+    ADM.collectContent();
+    // Apply to page
+    SECTIONS.forEach(function(sec){
+      if (config.contentEdits[sec.id]){
+        var el2 = document.querySelector(sec.sel);
+        if (el2) el2.innerHTML = config.contentEdits[sec.id];
+      }
+    });
+    toast('Content previewed', 'info');
+  };
+  el.appendChild(previewBtn);
+};
+
+ADM.collectContent = function(){
+  config.contentEdits = {};
+  SECTIONS.forEach(function(sec){
+    var ta = $('admEdit-'+sec.id);
+    if (ta){
+      var val = ta.value.trim();
+      if (val) config.contentEdits[sec.id] = val;
+    }
+  });
+};
+
+/* ── Tiles ── */
+var dragEl = null;
+ADM.renderTiles = function(){
+  var el = $('admTabTiles');
+  el.innerHTML = '<h3>Arrange Projects</h3><p class="hint">Drag to reorder project tiles.</p><ul class="adm-tile-list" id="admTileList"></ul>';
+  var list = $('admTileList');
+  var order = (config.tileOrder && config.tileOrder.length) ? config.tileOrder : DEFAULT_TILES.map(function(t){return t.id;});
+  // Ensure all tiles present
+  DEFAULT_TILES.forEach(function(t){ if (order.indexOf(t.id)===-1) order.push(t.id); });
+
+  order.forEach(function(tid,i){
+    var info = DEFAULT_TILES.find(function(t){return t.id===tid;});
+    if (!info) return;
+    var li = document.createElement('li');
+    li.className = 'adm-tile-item';
+    li.draggable = true;
+    li.setAttribute('data-id', tid);
+    li.innerHTML = '<span class="grip">&#x2630;</span><div class="ti"><div class="tt">'+info.title+'</div><div class="tm">'+info.meta+'</div></div><span style="color:#71717a;font-size:11px">#'+(i+1)+'</span>';
+    li.addEventListener('dragstart', function(e){
+      dragEl = li; li.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    li.addEventListener('dragend', function(){ li.classList.remove('dragging'); dragEl = null; });
+    li.addEventListener('dragover', function(e){
+      e.preventDefault(); e.dataTransfer.dropEffect = 'move';
+      var rect = li.getBoundingClientRect();
+      if (e.clientY < rect.top + rect.height/2) list.insertBefore(dragEl, li);
+      else list.insertBefore(dragEl, li.nextSibling);
+    });
+    list.appendChild(li);
+  });
+};
+
+ADM.collectTileOrder = function(){
+  var items = $('admTileList').querySelectorAll('.adm-tile-item');
+  config.tileOrder = [];
+  items.forEach(function(li){ config.tileOrder.push(li.getAttribute('data-id')); });
+};
+
+/* ── Resume ── */
+ADM.renderResume = function(){
+  if (config.resumeFile){
+    $('admResumeInfo').innerHTML = '<div style="padding:10px;background:#242833;border-radius:6px;font-size:12px;color:#22c55e">Current: <strong>'+config.resumeFile+'</strong></div>';
+  }
+};
+ADM.handleResume = function(inp){
+  var file = inp.files[0];
+  if (!file) return;
+  if (file.type !== 'application/pdf'){ toast('PDF only','err'); return; }
+  if (file.size > 5*1024*1024){ toast('Max 5 MB','err'); return; }
+  resumeName = file.name;
+  var reader = new FileReader();
+  reader.onload = function(e){
+    // Store raw base64 (strip data URL prefix)
+    var b64 = e.target.result.split(',')[1];
+    resumeBlob = b64;
+    $('admUploadZone').classList.add('has');
+    $('admUploadZone').innerHTML = '<p class="fn">'+resumeName+'</p><p>Click to replace</p>';
+    toast('Resume ready to deploy: ' + resumeName, 'info');
+  };
+  reader.readAsDataURL(file);
+};
+
+/* ══════════════════════════════════════════
+   GITHUB API
+   ══════════════════════════════════════════ */
+function ghHeaders(){
+  var gh = lsGet('github') || {};
+  return {
+    Authorization: 'Bearer ' + (gh.token || ''),
+    Accept: 'application/vnd.github.v3+json',
+    'Content-Type': 'application/json'
+  };
+}
+function ghUrl(path){
+  var gh = lsGet('github') || {};
+  return 'https://api.github.com/repos/' + gh.owner + '/' + gh.repo + '/contents/' + path;
+}
+
+function ghGetFile(path){
+  return fetch(ghUrl(path), {headers:ghHeaders()}).then(function(r){
+    if (r.status === 404) return null;
+    if (!r.ok) throw new Error('GitHub API error: ' + r.status);
+    return r.json();
+  });
+}
+function ghPutFile(path, contentB64, message, sha){
+  var body = { message: message, content: contentB64 };
+  if (sha) body.sha = sha;
+  return fetch(ghUrl(path), {method:'PUT', headers:ghHeaders(), body:JSON.stringify(body)}).then(function(r){
+    if (!r.ok) return r.json().then(function(j){ throw new Error(j.message || 'GitHub error'); });
+    return r.json();
+  });
+}
+
+ADM.testGh = function(){
+  var owner = $('admGhOwner').value.trim();
+  var repo = $('admGhRepo').value.trim();
+  var token = $('admGhToken').value.trim();
+  if (!owner || !repo || !token){ $('admGhStatus').innerHTML = '<span style="color:#ef4444">Fill all fields.</span>'; return; }
+  // Temporarily save for the API call
+  lsSet('github', {owner:owner, repo:repo, token:token, path:$('admGhPath').value.trim()||'site-config.json'});
+  $('admGhStatus').innerHTML = '<span style="color:#f59e0b">Testing...</span>';
+  fetch('https://api.github.com/repos/'+owner+'/'+repo, {headers:{Authorization:'Bearer '+token, Accept:'application/vnd.github.v3+json'}})
+    .then(function(r){
+      if (r.ok) $('admGhStatus').innerHTML = '<span style="color:#22c55e">Connected successfully.</span>';
+      else $('admGhStatus').innerHTML = '<span style="color:#ef4444">Failed — check token/repo.</span>';
+    })
+    .catch(function(){
+      $('admGhStatus').innerHTML = '<span style="color:#ef4444">Network error.</span>';
+    });
+};
+ADM.saveGh = function(){
+  var owner = $('admGhOwner').value.trim();
+  var repo = $('admGhRepo').value.trim();
+  var token = $('admGhToken').value.trim();
+  if (!owner || !repo || !token){ toast('Fill all GitHub fields','err'); return; }
+  lsSet('github', {owner:owner, repo:repo, token:token, path:$('admGhPath').value.trim()||'site-config.json'});
+  toast('GitHub setup saved');
+};
+
+/* ══════════════════════════════════════════
+   SAVE & DEPLOY
+   ══════════════════════════════════════════ */
+ADM.save = function(){
+  var gh = lsGet('github');
+  if (!gh || !gh.token || !gh.owner || !gh.repo){
+    toast('Set up GitHub connection first (GitHub tab)','err');
+    ADM.tab(document.querySelector('[data-tab="setup"]'));
+    return;
+  }
+
+  // Collect latest state from editors
+  ADM.collectContent();
+  ADM.collectTileOrder();
+
+  var saveBtn = $('admSaveBtn');
+  saveBtn.disabled = true;
+  saveBtn.textContent = 'Deploying...';
+
+  var configPath = gh.path || 'site-config.json';
+  var configObj = {
+    theme: config.theme,
+    customColors: config.customColors || {},
+    contentEdits: config.contentEdits || {},
+    tileOrder: config.tileOrder || [],
+    resumeFile: resumeName || config.resumeFile || ''
+  };
+  var configB64 = btoa(unescape(encodeURIComponent(JSON.stringify(configObj, null, 2))));
+
+  // Step 1: save config
+  ghGetFile(configPath).then(function(existing){
+    var sha = existing ? existing.sha : undefined;
+    return ghPutFile(configPath, configB64, 'Update site config via admin panel', sha);
+  }).then(function(){
+    // Step 2: save resume if uploaded
+    if (resumeBlob && resumeName){
+      return ghGetFile(resumeName).then(function(existing){
+        var sha = existing ? existing.sha : undefined;
+        return ghPutFile(resumeName, resumeBlob, 'Upload resume: ' + resumeName, sha);
+      }).then(function(){
+        config.resumeFile = resumeName;
+      });
+    }
+  }).then(function(){
+    saveBtn.disabled = false;
+    saveBtn.textContent = 'Save & Deploy';
+    toast('Deployed! Live in ~30 seconds after Vercel rebuilds.', 'ok');
+  }).catch(function(err){
+    saveBtn.disabled = false;
+    saveBtn.textContent = 'Save & Deploy';
+    toast('Deploy failed: ' + err.message, 'err');
+    console.error('Admin save error:', err);
+  });
+};
+
+})();
+</script>
+</body>
+</html>
