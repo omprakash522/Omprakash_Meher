@@ -1,7 +1,24 @@
 {
-  "theme": "original",
+  "theme": "ocean",
   "customColors": {},
-  "contentEdits": {},
-  "tileOrder": [],
+  "contentEdits": {
+    "hero-tagline": "Marketing end to end — research to revenue to retention. Two primary studies, three field surveys, a live creative brief and an automation build, all in one year of a PGDM.",
+    "hero-heading": "Om Prakash<br>Meher",
+    "branches-text": "Market research · consumer understanding · brand positioning · campaign strategy · sales activation · after-sales value creation · operations.",
+    "about-heading": "Marketing end to end — from research to revenue to retention.",
+    "about-body": "I work across the full marketing value chain: market research and consumer understanding, brand positioning and campaign strategy, sales activation, and after-sales relationship and value creation — with an operations lens on how things actually get delivered. A fast learner who picks up industries in weeks, not months. Two primary studies, three field surveys, a live creative brief and an automation build — all done in one year of a PGDM. The work is below.",
+    "work-heading": "Eight projects. Two of them run on data I collected myself.",
+    "skills-heading": "What I can do, and the proof behind each claim."
+  },
+  "tileOrder": [
+    "project-argus",
+    "project-goldloan",
+    "project-reliance",
+    "project-n8n",
+    "project-genai",
+    "project-digimarket",
+    "project-levis",
+    "project-microventure"
+  ],
   "resumeFile": ""
 }
