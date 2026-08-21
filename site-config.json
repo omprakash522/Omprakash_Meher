@@ -20,5 +20,10 @@
     "project-levis",
     "project-microventure"
   ],
-  "resumeFile": ""
+  "resumeFile": "",
+  "typography": {},
+  "sizing": {},
+  "layout": {},
+  "effects": {},
+  "customCSS": ""
 }
