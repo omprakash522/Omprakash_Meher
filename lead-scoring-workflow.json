@@ -1,0 +1,577 @@
+{
+  "name": "Lead Scoring & Instant Response Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "new-lead",
+        "options": {}
+      },
+      "id": "22e75deb-c3e3-47dd-976e-68963998d4ee",
+      "name": "Webhook - New Lead Form",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -48,
+        320
+      ],
+      "webhookId": "new-lead-webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Normalize incoming form data into a clean lead object.\n// The form posts customerName / customerEmail / customerPhone, but older\n// payloads used name / email / phone - accept either.\nconst body = $input.first().json.body || $input.first().json;\n\nconst rawEmail = (body.customerEmail || body.email || '').toString().trim();\n\nconst lead = {\n  name: body.customerName || body.name || 'Unknown',\n  email: rawEmail,\n  phone: body.customerPhone || body.phone || '',\n  company: body.company || 'Not provided',\n  job_title: body.job_title || body.jobTitle || 'Not provided',\n  message: body.message || '',\n  source: body.source || 'website_form',\n  submitted_at: new Date().toISOString()\n};\n\nreturn [{ json: lead }];"
+      },
+      "id": "82c0a017-73ea-4ee4-83f4-1b5bb7afe111",
+      "name": "Normalize Lead Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        128,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "assistant",
+              "content": "=You are a lead scoring assistant for a custom jewellery store. Analyze the incoming customer lead message and score its intent from 0 to 100 based on urgency, budget readiness, and purchase intent.\n\nCustomer Name: {{ $json.name }}\nCustomer Message: {{ $json.message }}\n\nRespond ONLY with a valid JSON object in this format:\n{\n  \"score\": <number between 0 and 100>,\n  \"reason\": \"<brief explanation>\"\n}"
+            }
+          ]
+        },
+        "simplify": false,
+        "builtInTools": {},
+        "options": {}
+      },
+      "id": "e8d8b3b1-4006-4962-8489-645c8579563b",
+      "name": "Message a model",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        288,
+        352
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "nc80Jub98HlgX33i",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse the model's JSON response.\n// The scoring node is an OpenAI (langchain) node whose text lives at\n// output[0].content[0].text. Fall back to the Gemini envelope / plain text.\nconst apiResponse = $input.first().json;\n\nlet rawText = '';\nif (apiResponse.output && apiResponse.output[0] && apiResponse.output[0].content && apiResponse.output[0].content[0]) {\n  rawText = apiResponse.output[0].content[0].text;\n} else if (apiResponse.candidates && apiResponse.candidates[0]) {\n  rawText = apiResponse.candidates[0].content.parts[0].text;\n} else if (apiResponse.message && typeof apiResponse.message.content === 'string') {\n  rawText = apiResponse.message.content;\n} else if (typeof apiResponse.text === 'string') {\n  rawText = apiResponse.text;\n}\n\nlet parsed;\ntry {\n  parsed = JSON.parse(rawText);\n} catch (e) {\n  // Strip markdown code fences if the model wrapped the JSON\n  try {\n    const cleaned = (rawText || '').replace(/```json/gi, '').replace(/```/g, '').trim();\n    parsed = JSON.parse(cleaned);\n  } catch (e2) {\n    parsed = {};\n  }\n}\n\nconst score = Number(parsed.score) || 0;\nconst reasoning = parsed.reasoning || parsed.reason || 'No reasoning provided';\nlet category = parsed.category;\nif (!category) {\n  category = score >= 70 ? 'hot' : (score >= 40 ? 'warm' : 'cold');\n}\nconst key_signals = parsed.key_signals || [];\n\nconst lead = $('Normalize Lead Data').first().json;\n\nreturn [{\n  json: {\n    ...lead,\n    score,\n    category,\n    reasoning,\n    key_signals\n  }\n}];"
+      },
+      "id": "8f816728-6012-4015-a74e-1f3736efc45d",
+      "name": "Parse AI Score",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        576,
+        272
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond1",
+              "leftValue": "={{ $json.score }}",
+              "rightValue": 70,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "f5892292-c410-4f2e-ad3f-f58ec25a7990",
+      "name": "IF Score >= 70 (Hot Lead)",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        752,
+        368
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=Write a warm, personalized, non-salesy email reply to a high-intent lead. Reference their message and company naturally. Offer a specific next step (book a call this week). Keep it under 100 words. No subject line, just body text.\n\nLead name: {{ $json.name }}\nCompany: {{ $json.company }}\nTheir message: {{ $json.message }}\nKey signals: {{ ($json.key_signals || []).join(\", \") }}"
+            }
+          ]
+        },
+        "simplify": false,
+        "builtInTools": {},
+        "options": {}
+      },
+      "id": "efa85de5-52d0-4ebb-a4d3-d5f9ca6e10c1",
+      "name": "AI - Draft Hot Lead Reply",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        960,
+        96
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "nc80Jub98HlgX33i",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "hasEmail",
+              "leftValue": "={{ $('Parse AI Score').item.json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "5fefd07a-83c8-4e25-82af-d2625c980168",
+      "name": "Filter - Hot Has Email",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        1344,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Parse AI Score').item.json.email }}",
+        "subject": "=Great connecting with you, {{ $('Parse AI Score').item.json.name }}!",
+        "message": "={{ $json.output[0].content[0].text }}",
+        "options": {}
+      },
+      "id": "ba153b8b-2893-4187-b3fb-15d0842c3e87",
+      "name": "Gmail - Send Instant Reply",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1520,
+        144
+      ],
+      "webhookId": "a2f1b11a-9cd7-4949-8097-931726d7687e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "h1NShqxPzKGhnwyx",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "tarasha-lead-alert",
+          "mode": "name"
+        },
+        "text": "=🔥 HOT LEAD ({{ $('Parse AI Score').item.json.score }}/100): {{ $('Parse AI Score').item.json.name }} from {{ $('Parse AI Score').item.json.company }}\\nPhone: {{ $('Parse AI Score').item.json.phone }}\\nReasoning: {{ $('Parse AI Score').item.json.reasoning }}\\nMessage: {{ $('Parse AI Score').item.json.message }}\\nEmail: {{ $('Parse AI Score').item.json.email }}",
+        "otherOptions": {}
+      },
+      "id": "bdce0e69-869e-415d-8e20-59de674ab77d",
+      "name": "Slack - Alert Sales Team",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        224
+      ],
+      "webhookId": "49319234-7652-4860-9b78-614eb58cdc33",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "1fAU9dTBDJFk39xJ",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "19JnXApe9ap28y6mUb2v0P3a0VJ1cin-W0p3RNyFLklQ",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gid=0",
+          "cachedResultName": "Sheet1"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $('Parse AI Score').item.json.name }}",
+            "Email": "={{ $('Parse AI Score').item.json.email }}",
+            "Company": "={{ $('Parse AI Score').item.json.company }}",
+            "Score": "={{ $('Parse AI Score').item.json.score }}",
+            "Category": "={{ $('Parse AI Score').item.json.category }}",
+            "Reasoning": "={{ $('Parse AI Score').item.json.reasoning }}",
+            "Submitted At": "={{ $('Parse AI Score').item.json.submitted_at }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reasoning",
+              "displayName": "Reasoning",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Submitted At",
+              "displayName": "Submitted At",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "8207840a-a7fa-431b-a414-0a25a8489021",
+      "name": "Google Sheets - Log Lead",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1696,
+        288
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "6dXXhJQWpEimIhhP",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "=Write a friendly nurture email for a lead that isn't sales-ready yet. Share one useful resource/tip relevant to their message, keep expectations low-pressure, invite them to reach out anytime. Under 90 words, body text only.\n\nLead name: {{ $json.name }}\nTheir message: {{ $json.message }}"
+            }
+          ]
+        },
+        "simplify": false,
+        "builtInTools": {},
+        "options": {}
+      },
+      "id": "844af90e-aa3f-4c61-b70c-42cab51b08a0",
+      "name": "AI - Draft Nurture Reply",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        992,
+        480
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "nc80Jub98HlgX33i",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "hasEmail",
+              "leftValue": "={{ $('Parse AI Score').item.json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "5465274e-a19d-4cc7-b82f-0e2a25a70e62",
+      "name": "Filter - Nurture Has Email",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        1312,
+        464
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Parse AI Score').item.json.email }}",
+        "subject": "=Thanks for reaching out, {{ $('Parse AI Score').item.json.name }}",
+        "message": "={{ $json.output[0].content[0].text }}",
+        "options": {}
+      },
+      "id": "375d6d8c-b6bf-4edb-9601-596abef3694c",
+      "name": "Gmail - Send Nurture Reply",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1536,
+        416
+      ],
+      "webhookId": "8190443d-0396-4810-af69-62d9fac7170c",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "h1NShqxPzKGhnwyx",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook - New Lead Form": {
+      "main": [
+        [
+          {
+            "node": "Normalize Lead Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Lead Data": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Parse AI Score",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse AI Score": {
+      "main": [
+        [
+          {
+            "node": "IF Score >= 70 (Hot Lead)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Score >= 70 (Hot Lead)": {
+      "main": [
+        [
+          {
+            "node": "AI - Draft Hot Lead Reply",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Slack - Alert Sales Team",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets - Log Lead",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI - Draft Nurture Reply",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets - Log Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI - Draft Hot Lead Reply": {
+      "main": [
+        [
+          {
+            "node": "Filter - Hot Has Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter - Hot Has Email": {
+      "main": [
+        [
+          {
+            "node": "Gmail - Send Instant Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI - Draft Nurture Reply": {
+      "main": [
+        [
+          {
+            "node": "Filter - Nurture Has Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter - Nurture Has Email": {
+      "main": [
+        [
+          {
+            "node": "Gmail - Send Nurture Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 0,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}
