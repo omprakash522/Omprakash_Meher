@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Scoring &amp; Instant Response Automation — n8n Workflow</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Calibri,"Segoe UI",Tahoma,sans-serif;background:#f4f5f7;color:#1a1a2e;line-height:1.6;padding:24px;overflow-x:auto}
+.wrap{max-width:1400px;margin:0 auto}
+h1{font-family:"Times New Roman",Times,serif;font-size:1.75rem;font-weight:700;color:#2d4a3e;margin-bottom:4px}
+.subtitle{color:#666;font-size:.95rem;margin-bottom:24px}
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:24px;font-size:.85rem}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.dot.main{background:#2d4a3e}.dot.hot{background:#c0392b}.dot.nurture{background:#2980b9}.dot.shared{background:#8e44ad}
+.section-title{font-family:"Times New Roman",Times,serif;font-size:1.3rem;font-weight:700;color:#2d4a3e;margin:32px 0 16px;border-bottom:2px solid #b8860b;padding-bottom:6px}
+
+/* Horizontal flow */
+.h-flow{display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding:16px 0 24px;min-height:180px}
+.h-node{display:flex;align-items:center;flex-shrink:0}
+.node-box{border:2px solid #2d4a3e;border-radius:10px;padding:14px 16px;background:#fff;width:160px;cursor:pointer;transition:all .2s;position:relative}
+.node-box:hover{box-shadow:0 2px 12px rgba(0,0,0,.12);transform:translateY(-2px)}
+.node-box.hot{border-color:#c0392b}
+.node-box.nurture{border-color:#2980b9}
+.node-box.shared{border-color:#8e44ad}
+.node-num{font-size:.7rem;font-weight:700;color:#b8860b;text-transform:uppercase;letter-spacing:.05em}
+.node-name{font-weight:600;font-size:.85rem;margin:3px 0;line-height:1.3}
+.node-type{font-size:.75rem;color:#888}
+.h-arrow{display:flex;align-items:center;flex-shrink:0;padding:0 6px;color:#b8860b;font-size:1.4rem;font-weight:700}
+.h-arrow svg{width:32px;height:18px}
+
+/* Branch area */
+.branch-area{display:flex;flex-direction:column;gap:0;margin:0;position:relative;flex-shrink:0}
+.branch-row{display:flex;align-items:center;gap:0}
+.branch-label{font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:16px;color:#fff;white-space:nowrap;flex-shrink:0;width:160px;text-align:center}
+.branch-label.hot{background:#c0392b}
+.branch-label.nurture{background:#2980b9}
+.branch-gap{height:16px}
+
+/* Connector lines */
+.split-connector{display:flex;flex-direction:column;align-items:center;justify-content:center;width:40px;flex-shrink:0;position:relative}
+.split-connector::before{content:'';position:absolute;top:25%;bottom:25%;left:50%;width:2px;background:#b8860b}
+.split-connector .line-top,.split-connector .line-bot{position:absolute;width:20px;height:2px;background:#b8860b;right:0}
+.split-connector .line-top{top:25%}
+.split-connector .line-bot{bottom:25%}
+
+.merge-connector{display:flex;flex-direction:column;align-items:center;justify-content:center;width:40px;flex-shrink:0;position:relative}
+.merge-connector::before{content:'';position:absolute;top:25%;bottom:25%;left:50%;width:2px;background:#b8860b}
+.merge-connector .line-top,.merge-connector .line-bot{position:absolute;width:20px;height:2px;background:#b8860b;left:0}
+.merge-connector .line-top{top:25%}
+.merge-connector .line-bot{bottom:25%}
+
+/* Detail popover */
+.detail-pop{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#fff;border:2px solid #2d4a3e;border-radius:8px;padding:12px 14px;font-size:.82rem;width:220px;z-index:10;box-shadow:0 4px 16px rgba(0,0,0,.15);line-height:1.5}
+.detail-pop.open{display:block}
+.detail-pop::before{content:'';position:absolute;top:-7px;left:50%;transform:translateX(-50%) rotate(45deg);width:12px;height:12px;background:#fff;border-left:2px solid #2d4a3e;border-top:2px solid #2d4a3e}
+.detail-pop code{background:#eee;padding:1px 4px;border-radius:3px;font-size:.8rem}
+
+.raw-toggle{background:#2d4a3e;color:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:.9rem;margin-top:24px}
+.raw-json{display:none;background:#1a1a2e;color:#a8d8a8;padding:20px;border-radius:8px;margin-top:12px;overflow-x:auto;font-family:monospace;font-size:.8rem;white-space:pre;max-height:500px;overflow-y:auto}
+.raw-json.open{display:block}
+footer{margin-top:40px;text-align:center;color:#999;font-size:.8rem;padding:16px 0;border-top:1px solid #e0e0e0}
+
+@media(max-width:900px){
+  .h-flow{flex-direction:column;align-items:stretch;min-height:auto}
+  .h-node{flex-direction:column}
+  .h-arrow{transform:rotate(90deg);padding:4px 0}
+  .node-box{width:100%}
+  .branch-area{flex-direction:column}
+  .branch-row{flex-direction:column;align-items:stretch}
+  .split-connector,.merge-connector{width:100%;height:24px;flex-direction:row}
+  .split-connector::before,.merge-connector::before{top:50%;bottom:auto;left:25%;right:25%;width:auto;height:2px}
+  .branch-label{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Lead Scoring &amp; Instant Response Automation</h1>
+  <p class="subtitle">An n8n workflow with 13 nodes — built for a custom jewellery business to score incoming leads with AI and respond instantly based on purchase intent.</p>
+
+  <div class="legend">
+    <span><span class="dot main"></span> Main pipeline</span>
+    <span><span class="dot hot"></span> Hot lead path (score &ge; 70)</span>
+    <span><span class="dot nurture"></span> Nurture path (score &lt; 70)</span>
+    <span><span class="dot shared"></span> Both paths</span>
+  </div>
+
+  <div class="section-title">Workflow Flow</div>
+  <p style="font-size:.85rem;color:#888;margin-bottom:8px">Click any node for details. Scroll horizontally to see the full flow.</p>
+
+  <!-- Horizontal workflow -->
+  <div class="h-flow">
+    <!-- Node 01 -->
+    <div class="h-node">
+      <div class="node-box" onclick="togglePop(this)">
+        <div class="node-num">Node 01</div>
+        <div class="node-name">Webhook — New Lead Form</div>
+        <div class="node-type">n8n Webhook (POST)</div>
+        <div class="detail-pop">Receives the website form submission via a POST request to <code>/new-lead</code> and starts the workflow run.</div>
+      </div>
+    </div>
+    <div class="h-arrow"><svg viewBox="0 0 32 18"><path d="M2 9h24M22 4l6 5-6 5" fill="none" stroke="#b8860b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+    <!-- Node 02 -->
+    <div class="h-node">
+      <div class="node-box" onclick="togglePop(this)">
+        <div class="node-num">Node 02</div>
+        <div class="node-name">Normalise Lead Data</div>
+        <div class="node-type">JavaScript (Code node)</div>
+        <div class="detail-pop">Turns the raw form payload into a clean lead object with fields: name, email, phone, company, job title, message, source, and timestamp.</div>
+      </div>
+    </div>
+    <div class="h-arrow"><svg viewBox="0 0 32 18"><path d="M2 9h24M22 4l6 5-6 5" fill="none" stroke="#b8860b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+    <!-- Node 03 -->
+    <div class="h-node">
+      <div class="node-box" onclick="togglePop(this)">
+        <div class="node-num">Node 03</div>
+        <div class="node-name">AI — Score Intent (0–100)</div>
+        <div class="node-type">OpenAI / GPT-4.1-mini</div>
+        <div class="detail-pop">Sends the lead's message to GPT-4.1-mini with a structured prompt. Scores purchase intent 0–100 based on urgency, budget readiness, and buying signals.</div>
+      </div>
+    </div>
+    <div class="h-arrow"><svg viewBox="0 0 32 18"><path d="M2 9h24M22 4l6 5-6 5" fill="none" stroke="#b8860b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+    <!-- Node 04 -->
+    <div class="h-node">
+      <div class="node-box" onclick="togglePop(this)">
+        <div class="node-num">Node 04</div>
+        <div class="node-name">Parse AI Score</div>
+        <div class="node-type">JavaScript (Code node)</div>
+        <div class="detail-pop">Parses the model output with fallbacks for different envelopes and markdown-fenced JSON. Buckets leads into: <b>Hot</b> (&ge;70), <b>Warm</b> (40–69), <b>Cold</b> (&lt;40).</div>
+      </div>
+    </div>
+    <div class="h-arrow"><svg viewBox="0 0 32 18"><path d="M2 9h24M22 4l6 5-6 5" fill="none" stroke="#b8860b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+    <!-- Node 05 — Branch point -->
+    <div class="h-node">
+      <div class="node-box" onclick="togglePop(this)" style="background:linear-gradient(135deg,#fff8f0,#fff);border-color:#b8860b;border-width:3px">
+        <div class="node-num" style="color:#2d4a3e">Node 05</div>
+        <div class="node-name">IF Score &ge; 70</div>
+        <div class="node-type">Conditional branch</div>
+        <div class="detail-pop">Splits the workflow into two paths. Hot leads (score 70+) go to fast-response. Everyone else goes to nurture.</div>
+      </div>
+    </div>
+
+    <!-- Split connector -->
+    <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;position:relative;width:48px">
+      <svg width="48" height="220" style="flex-shrink:0">
+        <path d="M4 110 H20 Q24 110 24 80 V40 H44" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M4 110 H20 Q24 110 24 140 V180 H44" fill="none" stroke="#2980b9" stroke-width="2.5" stroke-linecap="round"/>
+        <polygon points="40,36 48,40 40,44" fill="#c0392b"/>
+        <polygon points="40,176 48,180 40,184" fill="#2980b9"/>
+      </svg>
+    </div>
+
+    <!-- Two branch paths stacked -->
+    <div style="display:flex;flex-direction:column;gap:16px;flex-shrink:0">
+      <!-- HOT path -->
+      <div style="display:flex;align-items:center;gap:0">
+        <div class="h-node">
+          <div class="node-box hot" onclick="togglePop(this)">
+            <div class="node-num">06a</div>
+            <div class="node-name">AI — Draft Hot Reply</div>
+            <div class="node-type">GPT-4.1-mini</div>
+            <div class="detail-pop">Drafts a warm, non-salesy reply under 100 words referencing the specific enquiry and proposes one concrete next step.</div>
+          </div>
+        </div>
+        <div class="h-arrow"><svg viewBox="0 0 32 18"><path d="M2 9h24M22 4l6 5-6 5" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="h-node">
+          <div class="node-box hot" onclick="togglePop(this)">
+            <div class="node-num">07a</div>
+            <div class="node-name">Filter — Has Email</div>
+            <div class="node-type">Filter node</div>
+            <div class="detail-pop">Checks that a usable email address exists before attempting to send.</div>
+          </div>
+        </div>
+        <div class="h-arrow"><svg viewBox="0 0 32 18"><path d="M2 9h24M22 4l6 5-6 5" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="h-node">
+          <div class="node-box hot" onclick="togglePop(this)">
+            <div class="node-num">08a</div>
+            <div class="node-name">Gmail — Send Reply</div>
+            <div class="node-type">Gmail API</div>
+            <div class="detail-pop">Sends the AI-drafted reply to the hot lead instantly — while the buyer's intent is still live.</div>
+          </div>
+        </div>
+        <div class="h-arrow"><svg viewBox="0 0 32 18"><path d="M2 9h24M22 4l6 5-6 5" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="h-node">
+          <div class="node-box hot" onclick="togglePop(this)">
+            <div class="node-num">09a</div>
+            <div class="node-name">Slack — Alert Sales</div>
+            <div class="node-type">Slack API</div>
+            <div class="detail-pop">Posts the score, reasoning, contact details, and original message to the sales Slack channel for human follow-up.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NURTURE path -->
+      <div style="display:flex;align-items:center;gap:0">
+        <div class="h-node">
+          <div class="node-box nurture" onclick="togglePop(this)">
+            <div class="node-num">06b</div>
+            <div class="node-name">AI — Draft Nurture Reply</div>
+            <div class="node-type">GPT-4.1-mini</div>
+            <div class="detail-pop">Drafts a low-pressure reply under 90 words offering one genuinely useful piece of advice. No push, no pitch.</div>
+          </div>
+        </div>
+        <div class="h-arrow"><svg viewBox="0 0 32 18"><path d="M2 9h24M22 4l6 5-6 5" fill="none" stroke="#2980b9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="h-node">
+          <div class="node-box nurture" onclick="togglePop(this)">
+            <div class="node-num">07b</div>
+            <div class="node-name">Filter — Has Email</div>
+            <div class="node-type">Filter node</div>
+            <div class="detail-pop">Same email validation as the hot path — no send attempt without a valid address.</div>
+          </div>
+        </div>
+        <div class="h-arrow"><svg viewBox="0 0 32 18"><path d="M2 9h24M22 4l6 5-6 5" fill="none" stroke="#2980b9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="h-node">
+          <div class="node-box nurture" onclick="togglePop(this)">
+            <div class="node-num">08b</div>
+            <div class="node-name">Gmail — Send Nurture</div>
+            <div class="node-type">Gmail API</div>
+            <div class="detail-pop">Sends the nurture reply. A cold lead who gets one useful, unpushy answer is a warm lead in three months.</div>
+          </div>
+        </div>
+        <div class="h-node" style="visibility:hidden">
+          <div class="node-box" style="width:160px">&nbsp;</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Merge connector -->
+    <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;position:relative;width:48px">
+      <svg width="48" height="220" style="flex-shrink:0">
+        <path d="M4 40 H20 Q24 40 24 80 V110 H44" fill="none" stroke="#8e44ad" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M4 180 H20 Q24 180 24 140 V110 H44" fill="none" stroke="#8e44ad" stroke-width="2.5" stroke-linecap="round"/>
+        <polygon points="40,106 48,110 40,114" fill="#8e44ad"/>
+      </svg>
+    </div>
+
+    <!-- Shared final node -->
+    <div class="h-node" style="align-self:center">
+      <div class="node-box shared" onclick="togglePop(this)">
+        <div class="node-num">Both paths</div>
+        <div class="node-name">Google Sheets — Log Lead</div>
+        <div class="node-type">Google Sheets API</div>
+        <div class="detail-pop">Appends every lead — hot or nurture — with name, email, company, score, category, reasoning, and timestamp. The business gets a scored pipeline instead of an inbox.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Raw Workflow JSON</div>
+  <p style="font-size:.9rem;color:#666;margin-bottom:8px">This is the original n8n workflow file. You can import it directly into any n8n instance.</p>
+  <button class="raw-toggle" onclick="document.getElementById('rawjson').classList.toggle('open');this.textContent=this.textContent==='Show JSON'?'Hide JSON':'Show JSON'">Show JSON</button>
+  <div id="rawjson" class="raw-json"></div>
+
+  <footer>
+    Om Prakash Meher &middot; Built with n8n, GPT-4.1-mini, Gmail API, Slack API, Google Sheets API
+  </footer>
+</div>
+
+<script>
+function togglePop(box){
+  var pop = box.querySelector('.detail-pop');
+  var wasOpen = pop.classList.contains('open');
+  // Close all open popups first
+  document.querySelectorAll('.detail-pop.open').forEach(function(p){p.classList.remove('open')});
+  if (!wasOpen) pop.classList.add('open');
+}
+// Close popup when clicking outside
+document.addEventListener('click', function(e){
+  if (!e.target.closest('.node-box')){
+    document.querySelectorAll('.detail-pop.open').forEach(function(p){p.classList.remove('open')});
+  }
+});
+
+// Load raw JSON
+fetch('lead-scoring-workflow.json')
+  .then(function(r){return r.json()})
+  .then(function(data){document.getElementById('rawjson').textContent=JSON.stringify(data,null,2)})
+  .catch(function(){document.getElementById('rawjson').textContent='// JSON file not found alongside this page. Place lead-scoring-workflow.json in the same directory.'});
+</script>
+</body>
+</html>
