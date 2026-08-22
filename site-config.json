@@ -18,12 +18,16 @@
     "project-genai",
     "project-digimarket",
     "project-levis",
-    "project-microventure"
+    "project-microventure",
+    "project-dpdp",
+    "project-mra-system",
+    "project-rarebleu"
   ],
-  "resumeFile": "",
+  "resumeFile": "Resume - Omprakash (P2512044).pdf",
   "typography": {},
   "sizing": {},
   "layout": {},
   "effects": {},
-  "customCSS": ""
+  "customCSS": "",
+  "refLinks": {}
 }
